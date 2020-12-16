@@ -1,3 +1,6 @@
+/****/ // functions for image processing
+
+
 const imgStart = "<img src=\"";
 const imgEnd = " \"width=\"60%\">";
 
@@ -14,23 +17,34 @@ document.getElementById("filepicker").addEventListener("change", function(event)
       });
     });
 
+    let innerInput  = "";
 
       /****/ //puts visually  in order stored
       for (let file of arrayForm){
 
-        let img = new Image;
-        img.src = URL.createObjectURL(file);
-        img.title = file.name;
-    
-        document.getElementById('list').appendChild(img);
+        // let img = new Image;
 
-        console.log(file);
+        innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
+
+
+        // img.src = URL.createObjectURL(file);
+        // img.title = file.name;
+
+        // document.getElementById('list').appendChild(img);
+
+        // console.log(file);
       }
       /******/
+
+      const iList = document.getElementById("imageList");
+      iList.innerHTML = innerInput;
+
 
   }, false);
 
 
+
+/****/ // functions for button functionality
 
 var mybutton = document.getElementById("myBtn");
 
