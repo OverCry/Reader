@@ -1,51 +1,52 @@
 const imgStart = "<img src=\"";
-const imgEnd = " \"width=\"80%\">";
-
-let imageFile = null;
-
-
-const View = () => {
-    const input = document.getElementById("path").value;
-
-    const images = document.getElementById("images");
-    let photoString = "";
-
-    var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
-    imageFile=imageFile.sort(collator.compare);
-
-    for (let i=0; i<imageFile.length; i++) {
-      photoString+=imgStart + input +"\\"+ imageFile[i]+imgEnd;
-    };
-
-    images.innerHTML=photoString;
-}
+const imgEnd = " \"width=\"60%\">";
 
 document.getElementById("filepicker").addEventListener("change", function(event) {
 
-    let output = document.getElementById("listing");
-    let files = event.target.files;
+    // change file list to an array
+    const arrayForm = [].slice.call(event.target.files);
 
-    imageFile = [];
-
-    // for (let i=0; i<files.length; i++) {
-    //   imageFile[i] = files[i].name;
-    // };
-
-    let i=0;
-    for (const file of files){
-      imageFile[i]=file.name;
-      i++;
-    }
-
-    const item = document.createElement("li");
-    if (files.length>0){
-      item.innerHTML = "Files has been successfully loaded";
-    } else {
-      item.innerHTML = "Files has failed to load";
-
-    }
-    output.appendChild(item);
+    // sort array to natural sort
+    arrayForm.sort(function(a,b){
+      return (a.name).localeCompare(b.name, undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      });
+    });
 
 
+      /****/ //puts visually  in order stored
+      for (let file of arrayForm){
+
+        let img = new Image;
+        img.src = URL.createObjectURL(file);
+        img.title = file.name;
+    
+        document.getElementById('list').appendChild(img);
+
+        console.log(file);
+      }
+      /******/
 
   }, false);
+
+
+
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
