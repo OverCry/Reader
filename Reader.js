@@ -1,61 +1,59 @@
 /****/ // functions for image processing
 
+const imgStart = '<img src="';
+const imgEnd = ' "width="60%">';
 
-const imgStart = "<img src=\"";
-const imgEnd = " \"width=\"60%\">";
+// last position 
+let lastBodyPosition = 0;
+let lastElementPosition = 0;
 
-document.getElementById("filepicker").addEventListener("change", function(event) {
 
+document.getElementById("filepicker").addEventListener(
+  "change",
+  function (event) {
     // change file list to an array
     const arrayForm = [].slice.call(event.target.files);
 
     // sort array to natural sort
-    arrayForm.sort(function(a,b){
-      return (a.name).localeCompare(b.name, undefined, {
+    arrayForm.sort(function (a, b) {
+      return a.name.localeCompare(b.name, undefined, {
         numeric: true,
-        sensitivity: 'base'
+        sensitivity: "base",
       });
     });
 
-    let innerInput  = "";
+    let innerInput = ""; //puts visually  in order stored
 
-      /****/ //puts visually  in order stored
-      for (let file of arrayForm){
+    /****/ for (let file of arrayForm) {
+      innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
+    }
+    /******/
 
-        // let img = new Image;
-
-        innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
-
-
-        // img.src = URL.createObjectURL(file);
-        // img.title = file.name;
-
-        // document.getElementById('list').appendChild(img);
-
-        // console.log(file);
-      }
-      /******/
-
-      const iList = document.getElementById("imageList");
-      iList.innerHTML = innerInput;
+    const iList = document.getElementById("imageList");
+    iList.innerHTML = innerInput;
+  },
+  false
+);
 
 
-  }, false);
+// functions for button functionality
 
-
-
-/****/ // functions for button functionality
-
-var mybutton = document.getElementById("myBtn");
+/****/ var topBtn = document.getElementById("topBtn");
+var hideBtn = document.getElementById("hideBtn");
+const display = document.getElementById("display");
 
 // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+  scrollFunction();
+};
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
+    topBtn.style.display = "block";
+    hideBtn.style.display = "block";
   } else {
-    mybutton.style.display = "none";
+    topBtn.style.display = "none";
+    // hideBtn.style.display = "none";
   }
 }
 
@@ -63,4 +61,25 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+
+
+function hideFunction() {
+  if (hideBtn.innerText != "Show") {
+
+    lastBodyPosition = document.body.scrollTop;
+    lastElementPosition =   document.documentElement.scrollTop;
+    ;
+
+    hideBtn.innerText = "Show";
+    display.style.display="none";
+  } else {
+    hideBtn.innerText = "Hide";
+    display.style.display="block";
+
+    document.body.scrollTop = lastBodyPosition;
+    document.documentElement.scrollTop = lastElementPosition;
+
+  }
 }
