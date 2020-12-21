@@ -1,5 +1,6 @@
 /****/ // functions for image processing
 
+let manyDir = [];
 const imgStart = '<img src="';
 let imgEnd = ' "width="'+ document.getElementById("widthIn").value + '%">';
 document.getElementById("filepicker").addEventListener(
@@ -18,14 +19,15 @@ document.getElementById("filepicker").addEventListener(
   "change",
   function (event) {
 
-    // console.log(event.target.read);
 
     // change file list to an array
     const arrayForm = [].slice.call(event.target.files);
+    // console.log(arrayForm);
+
 
     // sort array to natural sort
     arrayForm.sort(function (a, b) {
-      return a.name.localeCompare(b.name, undefined, {
+      return a.webkitRelativePath.localeCompare(b.webkitRelativePath, undefined, {
         numeric: true,
         sensitivity: "base",
       });
@@ -43,6 +45,37 @@ document.getElementById("filepicker").addEventListener(
   },
   false
 );
+
+// document.getElementById("fileMulti").addEventListener(
+//   "change",
+//   function (event) {
+
+
+//     // change file list to an array
+//     const arrayForm = [].slice.call(event.target.files);
+//     console.log(arrayForm);
+
+
+//     // sort array to natural sort
+//     arrayForm.sort(function (a, b) {
+//       return a.name.localeCompare(b.name, undefined, {
+//         numeric: true,
+//         sensitivity: "base",
+//       });
+//     });
+
+//     let innerInput = ""; //puts visually  in order stored
+
+//     /****/ for (let file of arrayForm) {
+//       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
+//     }
+//     /******/
+
+//     const iList = document.getElementById("imageList");
+//     iList.innerHTML = innerInput;
+//   },
+//   false
+// );
 
 // functions for button functionality
 
