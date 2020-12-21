@@ -3,10 +3,9 @@
 const imgStart = '<img src="';
 const imgEnd = ' "width="60%">';
 
-// last position 
+// last position
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
-
 
 document.getElementById("filepicker").addEventListener(
   "change",
@@ -35,7 +34,6 @@ document.getElementById("filepicker").addEventListener(
   false
 );
 
-
 // functions for button functionality
 
 /****/ var topBtn = document.getElementById("topBtn");
@@ -59,27 +57,38 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
+  if (topBtn.innerText=="Top"){
+  storeLocation();
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+  topBtn.innerText = "Back";
+
+  } else {
+    topBtn.innerText = "Top";
+    returnLocation();
+  }
 }
-
-
 
 function hideFunction() {
   if (hideBtn.innerText != "Show") {
-
-    lastBodyPosition = document.body.scrollTop;
-    lastElementPosition =   document.documentElement.scrollTop;
-    ;
+    storeLocation();
 
     hideBtn.innerText = "Show";
-    display.style.display="none";
+    display.style.display = "none";
   } else {
     hideBtn.innerText = "Hide";
-    display.style.display="block";
+    display.style.display = "block";
 
-    document.body.scrollTop = lastBodyPosition;
-    document.documentElement.scrollTop = lastElementPosition;
-
+    returnLocation();
   }
+}
+
+function storeLocation(){
+  lastBodyPosition = document.body.scrollTop;
+  lastElementPosition = document.documentElement.scrollTop;
+}
+
+function returnLocation(){
+  document.body.scrollTop = lastBodyPosition;
+  document.documentElement.scrollTop = lastElementPosition;
 }
