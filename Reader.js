@@ -1,7 +1,14 @@
 /****/ // functions for image processing
 
 const imgStart = '<img src="';
-const imgEnd = ' "width="60%">';
+let imgEnd = ' "width="'+ document.getElementById("widthIn").value + '%">';
+document.getElementById("filepicker").addEventListener(
+  "change",
+  function (event) {
+    imgEnd = ' "width="'+ document.getElementById("widthIn").value + '%">';
+  },
+  false
+);
 
 // last position
 let lastBodyPosition = 0;
@@ -10,6 +17,9 @@ let lastElementPosition = 0;
 document.getElementById("filepicker").addEventListener(
   "change",
   function (event) {
+
+    // console.log(event.target.read);
+
     // change file list to an array
     const arrayForm = [].slice.call(event.target.files);
 
@@ -36,7 +46,8 @@ document.getElementById("filepicker").addEventListener(
 
 // functions for button functionality
 
-/****/ var topBtn = document.getElementById("topBtn");
+/****/
+var topBtn = document.getElementById("topBtn");
 var hideBtn = document.getElementById("hideBtn");
 const display = document.getElementById("display");
 
