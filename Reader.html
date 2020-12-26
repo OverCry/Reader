@@ -10,9 +10,7 @@
   </head>
 
   <body id="body">
-    <button onclick="hideFunction()" class="button" id="hideBtn">
-      Hide
-    </button>
+    <button onclick="hideFunction()" class="button" id="hideBtn">Hide</button>
 
     <div id="display">
       <button
@@ -22,6 +20,14 @@
         title="Go to top"
       >
         Top
+      </button>
+
+      <select id="locations" class="combo">
+        <option value="Select">Saved....</option>
+      </select>
+
+      <button onclick="addLocation()" class="button" id="saveBtn" title="Save">
+        Add
       </button>
 
       <p>Provide the directory of files you would like to see</p>
@@ -39,7 +45,17 @@
         size="4"
       /><br />
 
-
+      <label for="pages">Pages at a time (0 for all):</label>
+      <input
+        type="text"
+        id="pages"
+        min="0"
+        max="100"
+        value="0"
+        required
+        maxlength="3"
+        size="4"
+      /><br />
 
       <label for="filepicker">Select Directory:</label>
       <input
@@ -48,11 +64,9 @@
         name="fileList"
         webkitdirectory
         multiple
-      /><br>
+      /><br />
 
-
-
-<!-- 
+      <!-- 
       <label for="filepicker">Select Directory HigherLevel:</label>
 
       <input
