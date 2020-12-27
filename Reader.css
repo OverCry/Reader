@@ -9,24 +9,37 @@
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
+  width: 4%;
 }
 
 #topBtn {
   bottom: 20px;
-  right: 30px;
+  right: 20px;
   background-color: rgb(131, 204, 228);
 }
 
 #hideBtn {
   bottom: 20px;
-  left: 30px;
+  left: 10px;
   background-color: lightblue;
   color: lightblue;
 }
 
 #saveBtn {
   top: 20px;
-  right: 30px;
+  right: 20px;
+  background-color: rgb(131, 204, 228);
+}
+
+#removeBtn {
+  top: 80px;
+  right: 20px;
+  background-color: rgb(131, 204, 228);
+}
+
+#goBtn {
+  top: 50px;
+  left: 20px;
   background-color: rgb(131, 204, 228);
 }
 
@@ -47,5 +60,6 @@
   position: fixed;
   display: none;
   top: 20px;
-  left: 30px;
+  left: 20px;
+  width: 10%;
 }

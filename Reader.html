@@ -10,10 +10,36 @@
   </head>
 
   <body id="body">
-    <button onclick="hideFunction()" class="button" id="hideBtn">Hide</button>
+    <button onclick="hideFunction()" accesskey="q" class="button" id="hideBtn">
+      Hide
+    </button>
 
     <div id="display">
-      <button
+      <div id="extraTools">
+        <!-- functionality for saving locations -->
+        <select id="locations" class="combo">
+        </select>
+
+        <button
+          onclick="addLocation()"
+          class="button"
+          id="saveBtn"
+          title="Save"
+        >
+          Add
+        </button>
+
+        <button onclick="goLocation()" class="button" id="goBtn" title="Go">
+          Go
+        </button>
+
+        <button onclick="removeLocation()" class="button" id="removeBtn" title="Remove">
+          Del
+        </button>
+      
+
+        <!-- button to go to the top of the page -->
+        <button
         onclick="topFunction()"
         class="button"
         id="topBtn"
@@ -21,14 +47,12 @@
       >
         Top
       </button>
+  
 
-      <select id="locations" class="combo">
-        <option value="Select">Saved....</option>
-      </select>
+      </div>
 
-      <button onclick="addLocation()" class="button" id="saveBtn" title="Save">
-        Add
-      </button>
+
+
 
       <p>Provide the directory of files you would like to see</p>
 

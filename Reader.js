@@ -1,14 +1,12 @@
 /** */
-const filePersistance = [];
+const filePersistance = []; // functions for image processing
 
-/****/ // functions for image processing
-
-const imgStart = '<img src="';
-let imgEnd = ' "width="'+ document.getElementById("widthIn").value + '%">';
+/****/ const imgStart = '<img src="';
+let imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
 document.getElementById("filepicker").addEventListener(
   "change",
   function (event) {
-    imgEnd = ' "width="'+ document.getElementById("widthIn").value + '%">';
+    imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
   },
   false
 );
@@ -20,19 +18,20 @@ let lastElementPosition = 0;
 document.getElementById("filepicker").addEventListener(
   "change",
   function (event) {
-
-
     // change file list to an array
     const filePersistance = [].slice.call(event.target.files);
     // console.log(arrayForm);
 
-
     // sort array to natural sort
     filePersistance.sort(function (a, b) {
-      return a.webkitRelativePath.localeCompare(b.webkitRelativePath, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      });
+      return a.webkitRelativePath.localeCompare(
+        b.webkitRelativePath,
+        undefined,
+        {
+          numeric: true,
+          sensitivity: "base",
+        }
+      );
     });
 
     let innerInput = ""; //puts visually  in order stored
@@ -52,11 +51,9 @@ document.getElementById("filepicker").addEventListener(
 //   "change",
 //   function (event) {
 
-
 //     // change file list to an array
 //     const arrayForm = [].slice.call(event.target.files);
 //     console.log(arrayForm);
-
 
 //     // sort array to natural sort
 //     arrayForm.sort(function (a, b) {
@@ -85,6 +82,8 @@ document.getElementById("filepicker").addEventListener(
 var topBtn = document.getElementById("topBtn");
 var hideBtn = document.getElementById("hideBtn");
 var saveBtn = document.getElementById("saveBtn");
+var goBtn = document.getElementById("goBtn");
+var removeBtn = document.getElementById("removeBtn");
 let combo = document.getElementById("locations");
 const display = document.getElementById("display");
 
@@ -98,33 +97,66 @@ function scrollFunction() {
     topBtn.style.display = "block";
     hideBtn.style.display = "block";
     saveBtn.style.display = "block";
+    removeBtn.style.display = "block";
+    // console.log(combo.value);
+    if (combo.value != "") {
+      combo.style.display = "block";
+      goBtn.style.display = "block";
+    }
   } else {
     topBtn.style.display = "none";
     saveBtn.style.display = "none";
+    combo.style.display = "none";
+    goBtn.style.display = "none";
 
     // hideBtn.style.display = "none";
   }
+
+  if (combo.value != "" && document.documentElement.scrollTop > 2000) {
+    if (
+      combo.options[combo.options.length - 1].text.includes("Last location")
+    ) {
+      combo.remove(combo.options.length - 1);
+    }
+  }
+}
+
+function removeLocation(){
+  
+}
+
+//todo maybe change scroll; go to selected comboboxvalue
+function goLocation() {
+  document.documentElement.scrollTop = combo.value;
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  if (topBtn.innerText=="Top"){
-  // storeLocation();
-  addLocation("Last location");
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  topBtn.innerText = "Back";
-
-  } else {
-    topBtn.innerText = "Top";
-    returnLocation();
-  }
+  if (topBtn.innerText == "Top") {
+    // storeLocation();
+    addLocation("Last location");
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  } 
 }
 
-function addLocation(content){
-  // combo.options[combo.options.length] = new Option('Text 1', 'Value1');
-  combo.options[combo.options.length] = new Option(combo.options.length + " " + content, document.documentElement.scrollTop);
+// add location to combobox
+function addLocation(content) {
+  var today = new Date();
+  let hour = today.getHours();
+  let minute = today.getMinutes();
+  var time =
+    (hour < 10 ? "0" + hour : hour) +
+    ":" +
+    (minute < 10 ? "0" + minute : minute);
+
+  combo.options[combo.options.length] = new Option(
+    time + ": " + content,
+    document.documentElement.scrollTop
+  );
+
   combo.style.display = "block";
+  goBtn.style.display = "block";
 }
 
 function hideFunction() {
@@ -141,12 +173,12 @@ function hideFunction() {
   }
 }
 
-function storeLocation(){
+// for 'hide'
+function storeLocation() {
   lastBodyPosition = document.body.scrollTop;
   lastElementPosition = document.documentElement.scrollTop;
 }
-
-function returnLocation(){
+function returnLocation() {
   document.body.scrollTop = lastBodyPosition;
   document.documentElement.scrollTop = lastElementPosition;
 }
