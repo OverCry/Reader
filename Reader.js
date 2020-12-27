@@ -38,21 +38,24 @@ document.getElementById("filepicker").addEventListener(
   false
 );
 
-function populateImage(){
+function populateImage() {
   let innerInput = ""; //puts visually  in order stored
 
-  if (pages.value==0){
-  /****/
+  if (pages.value == 0) {
+    /****/
     for (let file of filePersistance) {
       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
     }
   } else {
-    document.getElementById("pageSelection").style="block";
+    document.getElementById("pageSelection").style = "block";
 
     //todo dumb for loop maybe have something better
-    for (i=0; i< pages.value;i++){
-      if (filePersistance.length>imagePosition+i){
-      innerInput += imgStart + URL.createObjectURL(filePersistance[imagePosition+i]) + imgEnd;
+    for (i = 0; i < pages.value; i++) {
+      if (filePersistance.length > imagePosition + i) {
+        innerInput +=
+          imgStart +
+          URL.createObjectURL(filePersistance[imagePosition + i]) +
+          imgEnd;
       } else {
         break;
       }
@@ -123,7 +126,6 @@ function scrollFunction() {
     if (combo.value != "") {
       combo.style.display = "block";
       goBtn.style.display = "block";
-
     }
   } else {
     topBtn.style.display = "none";
@@ -145,38 +147,37 @@ function scrollFunction() {
   }
 }
 
-function next(){
-  imagePosition+= (pages.value*1);
+function next() {
+  imagePosition += pages.value * 1;
   populateImage();
   pageTurn();
 }
 
-function back(){
-  imagePosition+= (pages.value*-1);
+function back() {
+  imagePosition += pages.value * -1;
   populateImage();
   pageTurn();
 }
 
-function pageTurn(){
-  if (imagePosition==0){
-    nextBtn.style.display="block";
-    backBtn.style.display="none";
-  } else if((imagePosition+(pages.value*1))<filePersistance.length){
-    nextBtn.style.display="block";
-    backBtn.style.display="block";
-  } else{
-    nextBtn.style.display="none";
-    backBtn.style.display="block";
+function pageTurn() {
+  if (imagePosition == 0) {
+    nextBtn.style.display = "block";
+    backBtn.style.display = "none";
+  } else if (imagePosition + pages.value * 1 < filePersistance.length) {
+    nextBtn.style.display = "block";
+    backBtn.style.display = "block";
+  } else {
+    nextBtn.style.display = "none";
+    backBtn.style.display = "block";
   }
-
 }
 
 //delete the selected location
-function removeLocation(){
+function removeLocation() {
   combo.remove(combo.selectedIndex);
-  if (combo.value==""){
-    combo.style.display="none";
-    goBtn.style.display="none"; 
+  if (combo.value == "") {
+    combo.style.display = "none";
+    goBtn.style.display = "none";
   }
 }
 
@@ -192,7 +193,7 @@ function topFunction() {
     addLocation("Last location");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  } 
+  }
 }
 
 // add location to combobox
@@ -204,11 +205,9 @@ function addLocation(content = description.value) {
   var time =
     (hour < 10 ? "0" + hour : hour) +
     ":" +
-    (minute < 10 ? "0" + minute : minute)+
+    (minute < 10 ? "0" + minute : minute) +
     ":" +
-    (second < 10 ? "0" + second : second)
-    ;
-
+    (second < 10 ? "0" + second : second);
   combo.options[combo.options.length] = new Option(
     time + " : " + content,
     document.documentElement.scrollTop
