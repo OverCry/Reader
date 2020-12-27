@@ -2,14 +2,14 @@
 const filePersistance = []; // functions for image processing
 
 /****/ const imgStart = '<img src="';
-let imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
-document.getElementById("filepicker").addEventListener(
-  "change",
-  function (event) {
-    imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
-  },
-  false
-);
+let imgEnd = ' "width="60%">';
+// document.getElementById("filepicker").addEventListener(
+//   "change",
+//   function (event) {
+//     imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
+//   },
+//   false
+// );
 
 // last position
 let lastBodyPosition = 0;
