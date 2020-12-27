@@ -85,6 +85,7 @@ var saveBtn = document.getElementById("saveBtn");
 var goBtn = document.getElementById("goBtn");
 var removeBtn = document.getElementById("removeBtn");
 let combo = document.getElementById("locations");
+let description = document.getElementById("description");
 const display = document.getElementById("display");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -98,16 +99,21 @@ function scrollFunction() {
     hideBtn.style.display = "block";
     saveBtn.style.display = "block";
     removeBtn.style.display = "block";
+    description.style.display = "block";
+
     // console.log(combo.value);
     if (combo.value != "") {
       combo.style.display = "block";
       goBtn.style.display = "block";
+
     }
   } else {
     topBtn.style.display = "none";
     saveBtn.style.display = "none";
     combo.style.display = "none";
     goBtn.style.display = "none";
+    removeBtn.style.display = "none";
+    description.style.display = "none";
 
     // hideBtn.style.display = "none";
   }
@@ -122,7 +128,11 @@ function scrollFunction() {
 }
 
 function removeLocation(){
-  
+  combo.remove(combo.selectedIndex);
+  if (combo.value==""){
+    combo.style.display="none";
+    goBtn.style.display="none"; 
+  }
 }
 
 //todo maybe change scroll; go to selected comboboxvalue
@@ -141,14 +151,18 @@ function topFunction() {
 }
 
 // add location to combobox
-function addLocation(content) {
+function addLocation(content = description.value) {
   var today = new Date();
   let hour = today.getHours();
   let minute = today.getMinutes();
+  let second = today.getSeconds();
   var time =
     (hour < 10 ? "0" + hour : hour) +
     ":" +
-    (minute < 10 ? "0" + minute : minute);
+    (minute < 10 ? "0" + minute : minute)+
+    ":" +
+    (second < 10 ? "0" + second : second)
+    ;
 
   combo.options[combo.options.length] = new Option(
     time + ": " + content,

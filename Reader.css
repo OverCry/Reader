@@ -25,6 +25,11 @@
   color: lightblue;
 }
 
+#hideBtn:hover {
+  color: rgb(142, 209, 231);
+  /* color: lightblue; */
+}
+
 #saveBtn {
   top: 20px;
   right: 20px;
@@ -43,10 +48,6 @@
   background-color: rgb(131, 204, 228);
 }
 
-#hideBtn:hover {
-  color: rgb(142, 209, 231);
-  /* color: lightblue; */
-}
 
 #display {
   text-align: center;
@@ -60,6 +61,15 @@
   position: fixed;
   display: none;
   top: 20px;
+  left: 20px;
+  width: 10%;
+}
+
+#description {
+  position: fixed;
+  display: none;
+  resize: none;
+  top: 110px;
   left: 20px;
   width: 10%;
 }
