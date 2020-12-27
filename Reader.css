@@ -1,3 +1,10 @@
+.perButton{
+  display: none;
+  font-size: 18px;
+  margin: auto;
+
+}
+
 .button{
   display: none;
   position: fixed;
@@ -49,8 +56,9 @@
 }
 
 
-#display {
+.center {
   text-align: center;
+  margin: 0 auto;
 }
 
 #body {
@@ -62,7 +70,7 @@
   display: none;
   top: 20px;
   left: 20px;
-  width: 10%;
+  width: 6%;
 }
 
 #description {

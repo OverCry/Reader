@@ -1,15 +1,14 @@
 /** */
-const filePersistance = []; // functions for image processing
+let filePersistance = []; // functions for image processing
+let imagePosition = 0;
+
+//***/
+let pages = document.getElementById("pages");
+let backBtn = document.getElementById("backBtn");
+let nextBtn = document.getElementById("nextBtn");
 
 /****/ const imgStart = '<img src="';
 let imgEnd = ' "width="60%">';
-// document.getElementById("filepicker").addEventListener(
-//   "change",
-//   function (event) {
-//     imgEnd = ' "width="' + document.getElementById("widthIn").value + '%">';
-//   },
-//   false
-// );
 
 // last position
 let lastBodyPosition = 0;
@@ -19,7 +18,7 @@ document.getElementById("filepicker").addEventListener(
   "change",
   function (event) {
     // change file list to an array
-    const filePersistance = [].slice.call(event.target.files);
+    filePersistance = [].slice.call(event.target.files);
     // console.log(arrayForm);
 
     // sort array to natural sort
@@ -33,19 +32,38 @@ document.getElementById("filepicker").addEventListener(
         }
       );
     });
-
-    let innerInput = ""; //puts visually  in order stored
-
-    /****/ for (let file of filePersistance) {
-      innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
-    }
-    /******/
-
-    const iList = document.getElementById("imageList");
-    iList.innerHTML = innerInput;
+    populateImage();
+    pageTurn();
   },
   false
 );
+
+function populateImage(){
+  let innerInput = ""; //puts visually  in order stored
+
+  if (pages.value==0){
+  /****/
+    for (let file of filePersistance) {
+      innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
+    }
+  } else {
+    document.getElementById("pageSelection").style="block";
+
+    //todo dumb for loop maybe have something better
+    for (i=0; i< pages.value;i++){
+      if (filePersistance.length>imagePosition+i){
+      innerInput += imgStart + URL.createObjectURL(filePersistance[imagePosition+i]) + imgEnd;
+      } else {
+        break;
+      }
+    }
+    // imagePosition+= (pages.value*1);
+  }
+  /******/
+
+  const iList = document.getElementById("imageList");
+  iList.innerHTML = innerInput;
+}
 
 // document.getElementById("fileMulti").addEventListener(
 //   "change",
@@ -127,6 +145,33 @@ function scrollFunction() {
   }
 }
 
+function next(){
+  imagePosition+= (pages.value*1);
+  populateImage();
+  pageTurn();
+}
+
+function back(){
+  imagePosition+= (pages.value*-1);
+  populateImage();
+  pageTurn();
+}
+
+function pageTurn(){
+  if (imagePosition==0){
+    nextBtn.style.display="block";
+    backBtn.style.display="none";
+  } else if((imagePosition+(pages.value*1))<filePersistance.length){
+    nextBtn.style.display="block";
+    backBtn.style.display="block";
+  } else{
+    nextBtn.style.display="none";
+    backBtn.style.display="block";
+  }
+
+}
+
+//delete the selected location
 function removeLocation(){
   combo.remove(combo.selectedIndex);
   if (combo.value==""){
@@ -165,7 +210,7 @@ function addLocation(content = description.value) {
     ;
 
   combo.options[combo.options.length] = new Option(
-    time + ": " + content,
+    time + " : " + content,
     document.documentElement.scrollTop
   );
 
@@ -173,6 +218,7 @@ function addLocation(content = description.value) {
   goBtn.style.display = "block";
 }
 
+// for 'hide'
 function hideFunction() {
   if (hideBtn.innerText != "Show") {
     storeLocation();
@@ -186,8 +232,6 @@ function hideFunction() {
     returnLocation();
   }
 }
-
-// for 'hide'
 function storeLocation() {
   lastBodyPosition = document.body.scrollTop;
   lastElementPosition = document.documentElement.scrollTop;

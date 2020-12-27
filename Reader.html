@@ -14,7 +14,7 @@
       Hide
     </button>
 
-    <div id="display">
+    <div class="center" id="display">
       <div id="extraTools">
         <!-- functionality for saving locations -->
         <select id="locations" class="combo">
@@ -57,19 +57,6 @@
 
       <p>Provide the directory of files you would like to see</p>
 
-      <!-- <label for="widthIn">Width Percentage (50-80):</label>
-      <input
-        type="text"
-        id="widthIn"
-        pattern="[0-9]{2}"
-        min="50"
-        max="80"
-        value="60"
-        required
-        maxlength="2"
-        size="4"
-      /><br /> -->
-
       <label for="pages">Pages at a time (0 for all):</label>
       <input
         type="text"
@@ -108,6 +95,25 @@
       <span id="list"></span>
 
       <div id="imageList"></div>
+
+      <div style="display:none" class="center" id="pageSelection">
+        <hr width=80%>
+        <table  width="80%" class="center"> 
+          <tr><th width="20%">
+          <button onclick="back()" class="perButton" id="backBtn" title="Back">
+            Back
+          </button>
+        </th><th width="60%"></th><th  width="20%">
+          <button onclick="next()" class="perButton" id="nextBtn" title="Next">
+            Next
+          </button>
+        </th>
+        </tr>
+        </table>
+
+
+
+      </div>
 
       <!-- <hr width="80%" /> -->
     </div>
