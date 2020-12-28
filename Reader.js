@@ -1,24 +1,45 @@
-/** */
+/*** constants */
+const imgStart = '<img src="';
+const imgEnd = ' "width="60%">';
+
+/** variables */
 let filePersistance = []; // functions for image processing
 let imagePosition = 0;
-
-//***/
-let pages = document.getElementById("pages");
-let backBtn = document.getElementById("backBtn");
-let nextBtn = document.getElementById("nextBtn");
-
-/***/
-const forPage = document.getElementById("forPage");
-
-
-/****/ const imgStart = '<img src="';
-let imgEnd = ' "width="60%">';
-
-// last position
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
 
-document.getElementById("filepicker").addEventListener(
+/*** image collection */
+const iList = document.getElementById("imageList");
+
+//*** input box*/
+var pages = document.getElementById("pages");
+var description = document.getElementById("description");
+
+/*** buttons */
+var backBtn = document.getElementById("backBtn");
+var nextBtn = document.getElementById("nextBtn");
+var topBtn = document.getElementById("topBtn");
+var hideBtn = document.getElementById("hideBtn");
+var saveBtn = document.getElementById("saveBtn");
+var goBtn = document.getElementById("goBtn");
+var removeBtn = document.getElementById("removeBtn");
+var settingBtn = document.getElementById("settingBtn");
+
+/** div */
+var forPage = document.getElementById("forPage");
+var settings = document.getElementById("settings");
+
+/** combo boxes */
+var displayType = document.getElementById("displayType");
+var locations = document.getElementById("locations");
+
+/** searchbox */
+var filepicker = document.getElementById("filepicker");
+
+
+
+//event listner to display updated files
+filepicker.addEventListener(
   "change",
   function (event) {
     // change file list to an array
@@ -36,16 +57,19 @@ document.getElementById("filepicker").addEventListener(
         }
       );
     });
+    if (settingBtn.innerText!="Extra Settings"){
+      extraSettings();
+    }
     populateImage();
     pageTurn();
   },
   false
 );
 
-document.getElementById("displayType").addEventListener(
+//event listner to check if page is being selected
+displayType.addEventListener(
   "change",
   function (event) {
-      console.log(event.target.selectedIndex);
       //pages
       if (event.target.selectedIndex==2){
         forPage.style.display="block";
@@ -56,17 +80,18 @@ document.getElementById("displayType").addEventListener(
   false
 );
 
+//populating the image on the screen, depending on the setting
 function populateImage() {
   let innerInput = ""; //puts visually  in order stored
 
   //TODO CHANGE 
-  if (pages.value == 0) {
+  if (displayType.value == "ALL") {
     /****/
     for (let file of filePersistance) {
       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
     }
-  } else {
-    document.getElementById("pageSelection").style = "block";
+   } else if (displayType.value=="PAGE"){
+    document.getElementById("pageSelection").style.display = "block";
 
     //todo dumb for loop maybe have something better
     for (i = 0; i < pages.value; i++) {
@@ -81,54 +106,9 @@ function populateImage() {
     }
     // imagePosition+= (pages.value*1);
   }
-  /******/
 
-  const iList = document.getElementById("imageList");
   iList.innerHTML = innerInput;
 }
-
-// document.getElementById("fileMulti").addEventListener(
-//   "change",
-//   function (event) {
-
-//     // change file list to an array
-//     const arrayForm = [].slice.call(event.target.files);
-//     console.log(arrayForm);
-
-//     // sort array to natural sort
-//     arrayForm.sort(function (a, b) {
-//       return a.name.localeCompare(b.name, undefined, {
-//         numeric: true,
-//         sensitivity: "base",
-//       });
-//     });
-
-//     let innerInput = ""; //puts visually  in order stored
-
-//     /****/ for (let file of arrayForm) {
-//       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
-//     }
-//     /******/
-
-//     const iList = document.getElementById("imageList");
-//     iList.innerHTML = innerInput;
-//   },
-//   false
-// );
-
-// functions for button functionality
-
-/****/
-var topBtn = document.getElementById("topBtn");
-var hideBtn = document.getElementById("hideBtn");
-var saveBtn = document.getElementById("saveBtn");
-var goBtn = document.getElementById("goBtn");
-var removeBtn = document.getElementById("removeBtn");
-var settingBtn = document.getElementById("settingBtn");
-
-let combo = document.getElementById("locations");
-let description = document.getElementById("description");
-let settings = document.getElementById("settings");
 
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -136,6 +116,7 @@ window.onscroll = function () {
   scrollFunction();
 };
 
+//function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     topBtn.style.display = "block";
@@ -145,14 +126,14 @@ function scrollFunction() {
     description.style.display = "block";
 
     // console.log(combo.value);
-    if (combo.value != "") {
-      combo.style.display = "block";
+    if (locations.value != "") {
+      locations.style.display = "block";
       goBtn.style.display = "block";
     }
   } else {
     topBtn.style.display = "none";
     saveBtn.style.display = "none";
-    combo.style.display = "none";
+    locations.style.display = "none";
     goBtn.style.display = "none";
     removeBtn.style.display = "none";
     description.style.display = "none";
@@ -160,15 +141,16 @@ function scrollFunction() {
     // hideBtn.style.display = "none";
   }
 
-  if (combo.value != "" && document.documentElement.scrollTop > 2000) {
+  if (locations.value != "" && document.documentElement.scrollTop > 2000) {
     if (
-      combo.options[combo.options.length - 1].text.includes("Last location")
+      locations.options[locations.options.length - 1].text.includes("Last location")
     ) {
-      combo.remove(combo.options.length - 1);
+      locations.remove(locations.options.length - 1);
     }
   }
 }
 
+//function for 'page' movement
 function next() {
   imagePosition += pages.value * 1;
   populateImage();
@@ -180,6 +162,7 @@ function back() {
   pageTurn();
 }
 function pageTurn() {
+  console.log(imagePosition);
   if (imagePosition == 0) {
     nextBtn.style.display = "block";
     backBtn.style.display = "none";
@@ -205,16 +188,16 @@ function extraSettings(){
 
 //delete the selected location
 function removeLocation() {
-  combo.remove(combo.selectedIndex);
-  if (combo.value == "") {
-    combo.style.display = "none";
+  locations.remove(locations.selectedIndex);
+  if (locations.value == "") {
+    locations.style.display = "none";
     goBtn.style.display = "none";
   }
 }
 
 //todo maybe change scroll; go to selected comboboxvalue
 function goLocation() {
-  document.documentElement.scrollTop = combo.value;
+  document.documentElement.scrollTop = locations.value;
 }
 
 // When the user clicks on the button, scroll to the top of the document
@@ -239,12 +222,12 @@ function addLocation(content = description.value) {
     (minute < 10 ? "0" + minute : minute) +
     ":" +
     (second < 10 ? "0" + second : second);
-  combo.options[combo.options.length] = new Option(
+  locations.options[locations.options.length] = new Option(
     time + " : " + content,
     document.documentElement.scrollTop
   );
 
-  combo.style.display = "block";
+  locations.style.display = "block";
   goBtn.style.display = "block";
 }
 
