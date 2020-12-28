@@ -41,28 +41,41 @@
 
 
     </div>
+    <p>Provide the directory of files you would like to see</p>
+    <label for="filepicker">Select Directory:</label>
+    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple /><br><br>
 
-
-
+    <button onclick="extraSettings()" class="displayButton" id="settingBtn" title="Settings">
+      Extra Settings
+    </button><br>
     <div>
-      <p>Provide the directory of files you would like to see</p>
-
-      <label for="displayType">How would you like it to be displayed:</label>
-
-      <select id="displayType" class="combo">
-        <option value="Page">By Pages</option>
-        <option value="Directory">By Directory</option>
-      </select><br><br>
-
-      <label for="pages">Pages at a time (0 for all):</label>
-      <input type="text" id="pages" min="0" max="100" value="0" required maxlength="3" size="4" /><br />
 
 
+      <div id="settings">
+        <label for="displayType">How would you like it to be displayed:</label>
+
+        <select id="displayType" class="combo">
+          <option value="All">All files</option>
+          <option value="Directory">Per Directory</option>
+          <option value="Page">By Pages</option>
+        </select>
+
+        <!-- <div id="forDir">
+          <select id="displayType" class="combo">
+            <option value="All">All</option>
+            <option value="Single">Per Directory</option>
+          </select>
+        </div> -->
+
+        <div id="forPage">
+          <label for="pages">Pages at a time:</label>
+          <input type="text" id="pages" min="1" max="100" value="1" required maxlength="3" size="4" /><br><br>
+        </div>
 
 
+      </div>
 
-      <label for="filepicker">Select Directory:</label>
-      <input type="file" id="filepicker" name="fileList" webkitdirectory multiple /><br />
+
 
     </div>
     <hr width="80%" />
@@ -72,7 +85,7 @@
 
     <div id="imageList"></div>
 
-    <div style="display:none" class="center" id="pageSelection">
+    <div class="center" id="pageSelection">
       <hr width=80%>
       <table width="80%" class="center">
         <tr>

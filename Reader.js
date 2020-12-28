@@ -7,6 +7,10 @@ let pages = document.getElementById("pages");
 let backBtn = document.getElementById("backBtn");
 let nextBtn = document.getElementById("nextBtn");
 
+/***/
+const forPage = document.getElementById("forPage");
+
+
 /****/ const imgStart = '<img src="';
 let imgEnd = ' "width="60%">';
 
@@ -38,9 +42,24 @@ document.getElementById("filepicker").addEventListener(
   false
 );
 
+document.getElementById("displayType").addEventListener(
+  "change",
+  function (event) {
+      console.log(event.target.selectedIndex);
+      //pages
+      if (event.target.selectedIndex==2){
+        forPage.style.display="block";
+      } else {
+        forPage.style.display="none";
+      }
+  },
+  false
+);
+
 function populateImage() {
   let innerInput = ""; //puts visually  in order stored
 
+  //TODO CHANGE 
   if (pages.value == 0) {
     /****/
     for (let file of filePersistance) {
@@ -105,9 +124,12 @@ var hideBtn = document.getElementById("hideBtn");
 var saveBtn = document.getElementById("saveBtn");
 var goBtn = document.getElementById("goBtn");
 var removeBtn = document.getElementById("removeBtn");
+var settingBtn = document.getElementById("settingBtn");
+
 let combo = document.getElementById("locations");
 let description = document.getElementById("description");
-const display = document.getElementById("display");
+let settings = document.getElementById("settings");
+
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
@@ -152,13 +174,11 @@ function next() {
   populateImage();
   pageTurn();
 }
-
 function back() {
   imagePosition += pages.value * -1;
   populateImage();
   pageTurn();
 }
-
 function pageTurn() {
   if (imagePosition == 0) {
     nextBtn.style.display = "block";
@@ -170,6 +190,17 @@ function pageTurn() {
     nextBtn.style.display = "none";
     backBtn.style.display = "block";
   }
+}
+
+//settings
+function extraSettings(){
+    if (settingBtn.innerText=="Extra Settings"){
+      settingBtn.innerText="Hide Settings";
+      settings.style.display="block";
+    } else {
+      settingBtn.innerText="Extra Settings";
+      settings.style.display="none";
+    }
 }
 
 //delete the selected location
