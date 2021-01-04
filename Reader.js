@@ -8,6 +8,10 @@ let imagePosition = 0;
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
 
+
+let currentDir = "";
+let directoryStart = [0];
+
 /*** image collection */
 const iList = document.getElementById("imageList");
 
@@ -38,13 +42,47 @@ var filepicker = document.getElementById("filepicker");
 
 
 
+//todo
+/**
+ * 
+ * 
+ * complete directory 
+ * 
+ * disable directions if chooseFile selected 'cancel'
+ * 
+ * 
+ * on next/back press go to top
+ * styling
+ * 
+ * give arrows appropriate functionality for directory choice
+ * 
+ * change extra settings to only appear for 'all'
+ * 
+ * maybe turn settings into a alert box?
+ * 
+ * remove description because not clean
+ * 
+ * allow button for themes? on side
+ * 
+ * ctrl k - > 0(zero) to collapse all
+ * 
+ */
+
+
+
+
+
 //event listner to display updated files
 filepicker.addEventListener(
   "change",
   function (event) {
     // change file list to an array
     filePersistance = [].slice.call(event.target.files);
-    // console.log(arrayForm);
+
+    //check if appropriate files exist
+    if (filePersistance.length==0){
+      return;
+    }
 
     // sort array to natural sort
     filePersistance.sort(function (a, b) {
@@ -57,14 +95,47 @@ filepicker.addEventListener(
         }
       );
     });
+
+    //hide extra settings if needed
     if (settingBtn.innerText!="Extra Settings"){
       extraSettings();
     }
+
+    //calculate directory breaks if required
+    if (displayType.value=="DIRECTORY"){
+      calculateDirectory();
+    }
+
+    //disable display method and/or pages
+    displayType.disabled=true;
+    pages.disabled=true;
+
     populateImage();
     pageTurn();
   },
   false
 );
+
+//calculate the directory breakpoints
+function calculateDirectory() {
+  let compareDir = relative(filePersistance[0]);
+
+  let index=0;
+
+  // console.log(filePersistance);
+  for (let file of filePersistance) {
+    // file.index = index;
+    if (compareDir.localeCompare(relative(file))!=0){
+      // console.log(file);
+      // console.log(filePersistance.findIndex(index));
+      compareDir = relative(file);
+      directoryStart.push(index);
+    }
+    index++;
+  }
+  directoryStart.push(filePersistance.length);
+  console.log(directoryStart);
+}
 
 //event listner to check if page is being selected
 displayType.addEventListener(
@@ -83,7 +154,7 @@ displayType.addEventListener(
 //populating the image on the screen, depending on the setting
 function populateImage() {
   let innerInput = ""; //puts visually  in order stored
-
+  // console.log(filePersistance.length==0);
   //TODO CHANGE 
   if (displayType.value == "ALL") {
     /****/
@@ -104,12 +175,36 @@ function populateImage() {
         break;
       }
     }
-    // imagePosition+= (pages.value*1);
-  }
+  } else if (displayType.value=="DIRECTORY"){
+    document.getElementById("pageSelection").style.display = "block";
+
+    //calculate dir starts
+
+    //lastElementLocation
+    let start= directoryStart[imagePosition];
+    let end = directoryStart[imagePosition + 1];
+
+    for (i=start;i<end;i++){
+      innerInput += imgStart + URL.createObjectURL(filePersistance[i]) + imgEnd;
+    }
+
+    // let currentDir = relative(filePersistance[0]);
+    // for (let file of filePersistance) {
+    //   // check if the same
+    //     if (currentDir.localeCompare(relative(file))==0){
+    //       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
+    //     } else {
+    //       break;
+    //     }
+    // }
+   }
 
   iList.innerHTML = innerInput;
 }
 
+function relative(file){
+  return file.webkitRelativePath.replace(file.name,"");
+}
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
@@ -162,11 +257,12 @@ function back() {
   pageTurn();
 }
 function pageTurn() {
-  console.log(imagePosition);
+  // console.log(imagePosition);
   if (imagePosition == 0) {
     nextBtn.style.display = "block";
     backBtn.style.display = "none";
-  } else if (imagePosition + pages.value * 1 < filePersistance.length) {
+  } else if (((displayType.value=="PAGE")&&(imagePosition + pages.value * 1 < filePersistance.length)) 
+  || ((displayType.value=="DIRECTORY")&&(imagePosition < directoryStart.length - 2)) ){
     nextBtn.style.display = "block";
     backBtn.style.display = "block";
   } else {
