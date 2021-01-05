@@ -7,7 +7,7 @@ let filePersistance = []; // functions for image processing
 let imagePosition = 0;
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
-
+let darkTheme = false;
 
 let currentDir = "";
 let directoryStart = [0];
@@ -28,6 +28,7 @@ var saveBtn = document.getElementById("saveBtn");
 var goBtn = document.getElementById("goBtn");
 var removeBtn = document.getElementById("removeBtn");
 var settingBtn = document.getElementById("settingBtn");
+var themeBtn = document.getElementById("themeBtn");
 
 /** div */
 var forPage = document.getElementById("forPage");
@@ -40,27 +41,21 @@ var locations = document.getElementById("locations");
 /** searchbox */
 var filepicker = document.getElementById("filepicker");
 
-
-
 //todo
 /**
- * 
- * 
+ *
+ *
  * styling
- * 
- * 
+ *
+ *
  * maybe turn settings into a alert box?
- * 
+ *
  * allow button for themes? on side
- * 
+ *
  *  * fix button scalling
  * ctrl k - > 0(zero) to collapse all
- * 
+ *
  */
-
-
-
-
 
 //event listner to display updated files
 filepicker.addEventListener(
@@ -70,9 +65,9 @@ filepicker.addEventListener(
     filePersistance = [].slice.call(event.target.files);
 
     //check if appropriate files exist
-    if (filePersistance.length==0){
-       backBtn.disabled=true;
-        nextBtn.disabled=true;
+    if (filePersistance.length == 0) {
+      backBtn.disabled = true;
+      nextBtn.disabled = true;
       return;
     }
 
@@ -89,18 +84,18 @@ filepicker.addEventListener(
     });
 
     //hide extra settings if needed
-    if (settingBtn.innerText!="Extra Settings"){
+    if (settingBtn.innerText != "Extra Settings") {
       extraSettings();
     }
 
     //calculate directory breaks if required
-    if (displayType.value=="DIRECTORY"){
+    if (displayType.value == "DIRECTORY") {
       calculateDirectory();
     }
 
     //disable display method and/or pages
-    displayType.disabled=true;
-    pages.disabled=true;
+    displayType.disabled = true;
+    pages.disabled = true;
 
     populateImage();
     pageTurn();
@@ -112,12 +107,12 @@ filepicker.addEventListener(
 function calculateDirectory() {
   let compareDir = relative(filePersistance[0]);
 
-  let index=0;
+  let index = 0;
 
   // console.log(filePersistance);
   for (let file of filePersistance) {
     // file.index = index;
-    if (compareDir.localeCompare(relative(file))!=0){
+    if (compareDir.localeCompare(relative(file)) != 0) {
       // console.log(file);
       // console.log(filePersistance.findIndex(index));
       compareDir = relative(file);
@@ -133,13 +128,13 @@ function calculateDirectory() {
 displayType.addEventListener(
   "change",
   function (event) {
-      //pages
-      if (event.target.selectedIndex==2){
-        forPage.style.display="block";
-      } else {
-        forPage.style.display="none";
-        pages.value="1";
-      }
+    //pages
+    if (event.target.selectedIndex == 2) {
+      forPage.style.display = "block";
+    } else {
+      forPage.style.display = "none";
+      pages.value = "1";
+    }
   },
   false
 );
@@ -148,13 +143,13 @@ displayType.addEventListener(
 function populateImage() {
   let innerInput = ""; //puts visually  in order stored
   // console.log(filePersistance.length==0);
-  //TODO CHANGE 
+  //TODO CHANGE
   if (displayType.value == "ALL") {
     /****/
     for (let file of filePersistance) {
       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
     }
-   } else if (displayType.value=="PAGE"){
+  } else if (displayType.value == "PAGE") {
     document.getElementById("pageSelection").style.display = "block";
 
     //todo dumb for loop maybe have something better
@@ -168,16 +163,16 @@ function populateImage() {
         break;
       }
     }
-  } else if (displayType.value=="DIRECTORY"){
+  } else if (displayType.value == "DIRECTORY") {
     document.getElementById("pageSelection").style.display = "block";
 
     //calculate dir starts
 
     //lastElementLocation
-    let start= directoryStart[imagePosition];
+    let start = directoryStart[imagePosition];
     let end = directoryStart[imagePosition + 1];
 
-    for (i=start;i<end;i++){
+    for (i = start; i < end; i++) {
       innerInput += imgStart + URL.createObjectURL(filePersistance[i]) + imgEnd;
     }
 
@@ -190,13 +185,13 @@ function populateImage() {
     //       break;
     //     }
     // }
-   }
+  }
 
   iList.innerHTML = innerInput;
 }
 
-function relative(file){
-  return file.webkitRelativePath.replace(file.name,"");
+function relative(file) {
+  return file.webkitRelativePath.replace(file.name, "");
 }
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -209,12 +204,14 @@ function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     topBtn.style.display = "block";
     hideBtn.style.display = "block";
+    themeBtn.style.display = "block";
 
-     if (displayType.value == "ALL") {
-    saveBtn.style.display = "block";
-    removeBtn.style.display = "block";
-    // description.style.display = "block";
-     }
+    if (displayType.value == "ALL") {
+      saveBtn.style.display = "block";
+      removeBtn.style.display = "block";
+
+      // description.style.display = "block";
+    }
 
     // console.log(combo.value);
     if (locations.value != "") {
@@ -227,6 +224,7 @@ function scrollFunction() {
     locations.style.display = "none";
     goBtn.style.display = "none";
     removeBtn.style.display = "none";
+    themeBtn.style.display = "none";
     // description.style.display = "none";
 
     // hideBtn.style.display = "none";
@@ -234,7 +232,9 @@ function scrollFunction() {
 
   if (locations.value != "" && document.documentElement.scrollTop > 2000) {
     if (
-      locations.options[locations.options.length - 1].text.includes("Last location")
+      locations.options[locations.options.length - 1].text.includes(
+        "Last location"
+      )
     ) {
       //todo use remove function method
       locations.selectedIndex = locations.options.length - 1;
@@ -263,8 +263,12 @@ function pageTurn() {
   if (imagePosition == 0) {
     nextBtn.style.display = "block";
     backBtn.style.display = "none";
-  } else if (((displayType.value=="PAGE")&&(imagePosition + pages.value * 1 < filePersistance.length)) 
-  || ((displayType.value=="DIRECTORY")&&(imagePosition < directoryStart.length - 2)) ){
+  } else if (
+    (displayType.value == "PAGE" &&
+      imagePosition + pages.value * 1 < filePersistance.length) ||
+    (displayType.value == "DIRECTORY" &&
+      imagePosition < directoryStart.length - 2)
+  ) {
     nextBtn.style.display = "block";
     backBtn.style.display = "block";
   } else {
@@ -274,14 +278,14 @@ function pageTurn() {
 }
 
 //settings
-function extraSettings(){
-    if (settingBtn.innerText=="Extra Settings"){
-      settingBtn.innerText="Hide Settings";
-      settings.style.display="block";
-    } else {
-      settingBtn.innerText="Extra Settings";
-      settings.style.display="none";
-    }
+function extraSettings() {
+  if (settingBtn.innerText == "Extra Settings") {
+    settingBtn.innerText = "Hide Settings";
+    settings.style.display = "block";
+  } else {
+    settingBtn.innerText = "Extra Settings";
+    settings.style.display = "none";
+  }
 }
 
 //delete the selected location
@@ -290,7 +294,7 @@ function removeLocation() {
   if (locations.value == "") {
     locations.style.display = "none";
     goBtn.style.display = "none";
-    removeBtn.disabled=true;
+    removeBtn.disabled = true;
   }
 }
 
@@ -322,12 +326,13 @@ function addLocation(content = "") {
     ":" +
     (second < 10 ? "0" + second : second);
   locations.options[locations.options.length] = new Option(
-    time + ": " + content, document.documentElement.scrollTop
+    time + ": " + content,
+    document.documentElement.scrollTop
   );
 
   locations.style.display = "block";
   goBtn.style.display = "block";
-  removeBtn.disabled=false;
+  removeBtn.disabled = false;
 }
 
 // for 'hide'
@@ -351,3 +356,19 @@ function returnLocation() {
   document.body.scrollTop = lastBodyPosition;
   document.documentElement.scrollTop = lastElementPosition;
 }
+
+function isDarkModeEnabled() {
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    darkMode();
+  }
+}
+
+function darkMode() {
+  // toggle all relevant elemts-
+  document.body.classList.toggle("dark-mode");
+}
+
+isDarkModeEnabled();

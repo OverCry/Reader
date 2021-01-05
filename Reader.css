@@ -14,7 +14,7 @@
   display: none;
   position: fixed;
   z-index: 99;
-  font-size: 18px;
+  /* font-size: 18px; */
   border: none;
   outline: none;
   color: white;
@@ -59,7 +59,13 @@
 }
 
 #goBtn {
-  top: 50px;
+  top: 170px;
+  right: 20px;
+  background-color: rgb(131, 204, 228);
+}
+
+#themeBtn {
+  top: 20px;
   left: 20px;
   background-color: rgb(131, 204, 228);
 }
@@ -70,15 +76,15 @@
   margin: 0 auto;
 }
 
-#body {
+body {
   background-color: lightblue;
 }
 
 #locations {
   position: fixed;
   display: none;
-  top: 20px;
-  left: 20px;
+  top: 140px;
+  right: 20px;
   width: 4%;
 }
 
@@ -101,4 +107,11 @@
 
 #forPage{
   display: none;
+}
+
+/* dark mode */
+
+.dark-mode {
+  background-color: black;
+  color: white;
 }
