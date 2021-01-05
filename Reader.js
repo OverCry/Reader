@@ -17,7 +17,7 @@ const iList = document.getElementById("imageList");
 
 //*** input box*/
 var pages = document.getElementById("pages");
-var description = document.getElementById("description");
+// var description = document.getElementById("description");
 
 /*** buttons */
 var backBtn = document.getElementById("backBtn");
@@ -45,20 +45,17 @@ var filepicker = document.getElementById("filepicker");
 //todo
 /**
  * 
- *  * 
+ * 
  * styling
  * 
- * change extra settings to only appear for 'all'
  * 
  * maybe turn settings into a alert box?
  * 
- * remove description because not clean
- * 
  * allow button for themes? on side
  * 
+ *  * fix button scalling
  * ctrl k - > 0(zero) to collapse all
  * 
- * fix button scalling
  */
 
 
@@ -75,7 +72,7 @@ filepicker.addEventListener(
     //check if appropriate files exist
     if (filePersistance.length==0){
        backBtn.disabled=true;
-nextBtn.disabled=true;
+        nextBtn.disabled=true;
       return;
     }
 
@@ -212,9 +209,12 @@ function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     topBtn.style.display = "block";
     hideBtn.style.display = "block";
+
+     if (displayType.value == "ALL") {
     saveBtn.style.display = "block";
     removeBtn.style.display = "block";
-    description.style.display = "block";
+    // description.style.display = "block";
+     }
 
     // console.log(combo.value);
     if (locations.value != "") {
@@ -227,7 +227,7 @@ function scrollFunction() {
     locations.style.display = "none";
     goBtn.style.display = "none";
     removeBtn.style.display = "none";
-    description.style.display = "none";
+    // description.style.display = "none";
 
     // hideBtn.style.display = "none";
   }
@@ -236,7 +236,9 @@ function scrollFunction() {
     if (
       locations.options[locations.options.length - 1].text.includes("Last location")
     ) {
-      locations.remove(locations.options.length - 1);
+      //todo use remove function method
+      locations.selectedIndex = locations.options.length - 1;
+      removeLocation();
     }
   }
 }
@@ -288,6 +290,7 @@ function removeLocation() {
   if (locations.value == "") {
     locations.style.display = "none";
     goBtn.style.display = "none";
+    removeBtn.disabled=true;
   }
 }
 
@@ -307,7 +310,7 @@ function topFunction() {
 }
 
 // add location to combobox
-function addLocation(content = description.value) {
+function addLocation(content = "") {
   var today = new Date();
   let hour = today.getHours();
   let minute = today.getMinutes();
@@ -319,12 +322,12 @@ function addLocation(content = description.value) {
     ":" +
     (second < 10 ? "0" + second : second);
   locations.options[locations.options.length] = new Option(
-    time + " : " + content,
-    document.documentElement.scrollTop
+    time + ": " + content, document.documentElement.scrollTop
   );
 
   locations.style.display = "block";
   goBtn.style.display = "block";
+  removeBtn.disabled=false;
 }
 
 // for 'hide'

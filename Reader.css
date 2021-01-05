@@ -54,6 +54,10 @@
   background-color: rgb(131, 204, 228);
 }
 
+#removeBtn[disabled] {
+  opacity: 25%;
+}
+
 #goBtn {
   top: 50px;
   left: 20px;
@@ -75,7 +79,7 @@
   display: none;
   top: 20px;
   left: 20px;
-  width: 6%;
+  width: 4%;
 }
 
 #description {
