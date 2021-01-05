@@ -45,16 +45,8 @@ var filepicker = document.getElementById("filepicker");
 //todo
 /**
  * 
- * 
- * complete directory 
- * 
- * disable directions if chooseFile selected 'cancel'
- * 
- * 
- * on next/back press go to top
+ *  * 
  * styling
- * 
- * give arrows appropriate functionality for directory choice
  * 
  * change extra settings to only appear for 'all'
  * 
@@ -66,6 +58,7 @@ var filepicker = document.getElementById("filepicker");
  * 
  * ctrl k - > 0(zero) to collapse all
  * 
+ * fix button scalling
  */
 
 
@@ -81,6 +74,8 @@ filepicker.addEventListener(
 
     //check if appropriate files exist
     if (filePersistance.length==0){
+       backBtn.disabled=true;
+nextBtn.disabled=true;
       return;
     }
 
@@ -146,6 +141,7 @@ displayType.addEventListener(
         forPage.style.display="block";
       } else {
         forPage.style.display="none";
+        pages.value="1";
       }
   },
   false
@@ -250,11 +246,15 @@ function next() {
   imagePosition += pages.value * 1;
   populateImage();
   pageTurn();
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 function back() {
   imagePosition += pages.value * -1;
   populateImage();
   pageTurn();
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 function pageTurn() {
   // console.log(imagePosition);
@@ -331,7 +331,6 @@ function addLocation(content = description.value) {
 function hideFunction() {
   if (hideBtn.innerText != "Show") {
     storeLocation();
-
     hideBtn.innerText = "Show";
     display.style.display = "none";
   } else {
