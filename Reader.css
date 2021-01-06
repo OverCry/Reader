@@ -9,10 +9,24 @@ body {
   margin: auto;
 }
 
-.displayButton{
+#settingsBtn{
   display: block;
   font-size: 12px;
   margin: auto;
+}
+
+.hiddenButton{
+  display: none;
+  position: fixed;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  width: 4%;
 }
 
 .button{
@@ -89,16 +103,27 @@ body {
 }
 
 #widthPBtn{
+  /* display: none; */
   bottom: 140px;
   right: 20px;
   background-color: rgb(131, 204, 228);
 }
 
+#widthPBtn[disabled] {
+  opacity: 25%;
+}
+
 #widthMBtn{
+  /* display: none; */
   bottom: 80px;
   right: 20px;
   background-color: rgb(131, 204, 228);
 }
+
+#widthMBtn[disabled] {
+  opacity: 25%;
+}
+
 
 .center {
   text-align: center;
@@ -126,6 +151,9 @@ body {
   display: none;
 }
 
+
+
+
 #pageSelection{
   display: none;
 }
@@ -135,7 +163,7 @@ body {
 }
 
 #imageList {
-  max-width: 100%;
+  width: 100%;
   align-content: center;
   text-align: center;
   margin: 0 auto;

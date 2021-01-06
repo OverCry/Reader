@@ -18,13 +18,21 @@
     Mode
   </button>
 
+  <button onclick="increaseWidth()" accesskey="+" class="hiddenButton" id="widthPBtn" title="Increase Image Size" disabled="true">
+    +
+  </button>
+
+  <button onclick="decreaseWidth()" accesskey="-" class="hiddenButton" id="widthMBtn" title="Decrease Image Size">
+    -
+  </button>
+
   <div class="center" id="display">
     <div id="extraTools">
       <!-- functionality for saving locations -->
       <select id="locations" class="combo" disabled="true">
       </select>
 
-      <button onclick="addLocation()" class="button" id="saveBtn" title="Save" disabled="true">
+      <button onclick="addLocation()"  class="button" id="saveBtn" title="Save" disabled="true">
         Add
       </button>
 
@@ -40,25 +48,15 @@
         Top
       </button>
 
-
-
-      <button onclick="increaseWidth()" class="button" id="widthPBtn" title="Increase Image Size">
-        +
-      </button>
-
-      <button onclick="decreaseWidth()" class="button" id="widthMBtn" title="Decrease Image Size">
-        -
-      </button>
-
     </div>
 
     <p>Provide the directory of files you would like to see</p>
     <label for="filepicker">Select Directory:</label>
     <input type="file" id="filepicker" name="fileList" webkitdirectory multiple /><br><br>
 
-    <button onclick="extraSettings()" class="displayButton" id="settingBtn" title="Settings">
+    <button onclick="extraSettings()"  id="settingBtn" title="Settings">
       Extra Settings
-    </button><br>
+    </button><br><br>
       <div id="settings">
         <label for="displayType">How would you like it to be displayed:</label>
         <select id="displayType" class="combo">
@@ -72,11 +70,10 @@
         </div>
       </div>
 
-
-
     <hr width="80%" />
 
-    <div id="imageList" ></div>
+    
+    <div id="imageList" style="width:100%"></div>
     <div class="center" id="pageSelection">
       <hr width=80%>
       <table width="80%" class="center">

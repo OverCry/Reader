@@ -1,6 +1,6 @@
 /*** constants */
 const imgStart = '<img src="';
-const imgEnd = ' "width="60%">';
+const imgEnd = ' "width="80%">';
 
 /** variables */
 let filePersistance = []; // functions for image processing
@@ -36,6 +36,8 @@ var widthMBtn = document.getElementById("widthMBtn");
 var forPage = document.getElementById("forPage");
 var settings = document.getElementById("settings");
 var extraTools = document.getElementById("extraTools");
+var imageList = document.getElementById("imageList");
+
 
 /** combo boxes */
 var displayType = document.getElementById("displayType");
@@ -71,6 +73,10 @@ filepicker.addEventListener(
       nextBtn.disabled = true;
       return;
     }
+
+    //display scalling
+    widthPBtn.style.display="block";
+    widthMBtn.style.display="block";
 
     // sort array to natural sort
     filePersistance.sort(function (a, b) {
@@ -189,6 +195,10 @@ function relative(file) {
 window.onscroll = function () {
   scrollFunction();
 };
+
+window.onresize = function () {
+  detectWidth();
+}
 
 //function actiavted on scroll
 function scrollFunction() {
@@ -364,4 +374,55 @@ function darkMode() {
   widthPBtn.classList.toggle("dark-mode");
 }
 
+function increaseWidth(){
+  widthMBtn.disabled=false;
+  imageList.style.width = (Number(imageList.style.width.replace("%","")) + 5 )+ "%";
+  if (imageList.style.width == "100%"){
+    // imageList.style.width = "100%";
+    widthPBtn.disabled=true;
+  }
+}
+
+function decreaseWidth(){
+  widthPBtn.disabled=false;
+  imageList.style.width = (Number(imageList.style.width.replace("%","")) - 5 )+ "%";
+  if (imageList.style.width == "50%"){
+    // imageList.style.width = "5%";
+
+    widthMBtn.disabled=true;
+  }
+}
+
+function detectWidth() {
+  var width = document.body.clientWidth;
+  console.log(width);
+  
+  //smaller than some amount
+  if (width>1800){
+    themeBtn.innerText="Mode";
+    topBtn.innerText="Top";
+    hideBtn.innerText="Hide";
+    saveBtn.innerText="Add";
+    removeBtn.innerText="Del";
+    goBtn.innerText="Go";
+  } else if (width>1200) {
+    themeBtn.innerText="M";
+    topBtn.innerText="T";
+    hideBtn.innerText="H";
+    saveBtn.innerText="A";
+    removeBtn.innerText="R";
+    goBtn.innerText="G";
+  } else {
+    themeBtn.innerText="";
+    topBtn.innerText="";
+    hideBtn.innerText="";
+    saveBtn.innerText="";
+    removeBtn.innerText="";
+    goBtn.innerText="";
+  }
+
+}
+
+//set dark mode theme if default
 isDarkModeEnabled();
+detectWidth();
