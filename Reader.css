@@ -3,8 +3,8 @@ body {
   background-color: lightblue;
 }
 
-.perButton{
-  /* display: none; */
+.dirButton{
+  display: none;
   font-size: 18px;
   margin: auto;
 }
@@ -88,11 +88,22 @@ body {
   background-color: rgb(131, 204, 228);
 }
 
+#widthPBtn{
+  bottom: 140px;
+  right: 20px;
+  background-color: rgb(131, 204, 228);
+}
+
+#widthMBtn{
+  bottom: 80px;
+  right: 20px;
+  background-color: rgb(131, 204, 228);
+}
+
 .center {
   text-align: center;
   margin: 0 auto;
 }
-
 
 #locations {
   position: fixed;
@@ -123,19 +134,23 @@ body {
   display: none;
 }
 
-/* dark mode */
+#imageList {
+  max-width: 100%;
+  align-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
 
+/* dark mode */
 .dark-mode {
   background-color: rgb(37, 25, 43);
   color: white; 
 }
 
-
 #themeBtn.dark-mode  {
   background-color: rgb(58, 39, 68);
   color: white;
 }
-
 
 #topBtn.dark-mode  {
   background-color: rgb(58, 39, 68);
@@ -153,23 +168,32 @@ body {
   color: rgb(58, 39, 68);
 
 }
-/* color: rgb(58, 39, 68); */
-
 
 #saveBtn.dark-mode  {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-
 #removeBtn.dark-mode  {
   background-color: rgb(58, 39, 68);
   color: white;
 }
-
 
 #goBtn.dark-mode  {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
+#widthPBtn.dark-mode{
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
+#widthMBtn.dark-mode{
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
+#extraTools {
+  display: none;
+}

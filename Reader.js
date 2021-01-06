@@ -29,10 +29,13 @@ var goBtn = document.getElementById("goBtn");
 var removeBtn = document.getElementById("removeBtn");
 var settingBtn = document.getElementById("settingBtn");
 var themeBtn = document.getElementById("themeBtn");
+var widthPBtn = document.getElementById("widthPBtn");
+var widthMBtn = document.getElementById("widthMBtn");
 
 /** div */
 var forPage = document.getElementById("forPage");
 var settings = document.getElementById("settings");
+var extraTools = document.getElementById("extraTools");
 
 /** combo boxes */
 var displayType = document.getElementById("displayType");
@@ -49,8 +52,6 @@ var filepicker = document.getElementById("filepicker");
  *
  *
  * maybe turn settings into a alert box?
- *
- * allow button for themes? on side
  *
  *  * fix button scalling
  * ctrl k - > 0(zero) to collapse all
@@ -93,6 +94,11 @@ filepicker.addEventListener(
       calculateDirectory();
     }
 
+    if (displayType.value == "ALL") {
+      extraTools.style.display="block";
+    }
+
+
     //disable display method and/or pages
     displayType.disabled = true;
     pages.disabled = true;
@@ -106,15 +112,10 @@ filepicker.addEventListener(
 //calculate the directory breakpoints
 function calculateDirectory() {
   let compareDir = relative(filePersistance[0]);
-
   let index = 0;
 
-  // console.log(filePersistance);
   for (let file of filePersistance) {
-    // file.index = index;
     if (compareDir.localeCompare(relative(file)) != 0) {
-      // console.log(file);
-      // console.log(filePersistance.findIndex(index));
       compareDir = relative(file);
       directoryStart.push(index);
     }
@@ -175,16 +176,6 @@ function populateImage() {
     for (i = start; i < end; i++) {
       innerInput += imgStart + URL.createObjectURL(filePersistance[i]) + imgEnd;
     }
-
-    // let currentDir = relative(filePersistance[0]);
-    // for (let file of filePersistance) {
-    //   // check if the same
-    //     if (currentDir.localeCompare(relative(file))==0){
-    //       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
-    //     } else {
-    //       break;
-    //     }
-    // }
   }
 
   iList.innerHTML = innerInput;
@@ -369,6 +360,8 @@ function darkMode() {
   saveBtn.classList.toggle("dark-mode");
   removeBtn.classList.toggle("dark-mode");
   goBtn.classList.toggle("dark-mode");
+  widthMBtn.classList.toggle("dark-mode");
+  widthPBtn.classList.toggle("dark-mode");
 }
 
 isDarkModeEnabled();
