@@ -202,32 +202,25 @@ window.onscroll = function () {
 //function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display = "block";
-    hideBtn.style.display = "block";
-    themeBtn.style.display = "block";
-
     if (displayType.value == "ALL") {
-      saveBtn.style.display = "block";
-      removeBtn.style.display = "block";
-
-      // description.style.display = "block";
+      saveBtn.disabled = false;
+      topBtn.disabled = false;
     }
 
     // console.log(combo.value);
     if (locations.value != "") {
       locations.style.display = "block";
       goBtn.style.display = "block";
+      removeBtn.disabled = false;
+      goBtn.disabled = false;
+      locations.disabled = false;
     }
   } else {
-    topBtn.style.display = "none";
-    saveBtn.style.display = "none";
-    locations.style.display = "none";
-    goBtn.style.display = "none";
-    removeBtn.style.display = "none";
-    themeBtn.style.display = "none";
-    // description.style.display = "none";
-
-    // hideBtn.style.display = "none";
+    saveBtn.disabled = true;
+    topBtn.disabled = true;
+    removeBtn.disabled = true;
+    locations.disabled = true;
+    goBtn.disabled = true;
   }
 
   if (locations.value != "" && document.documentElement.scrollTop > 2000) {
@@ -292,8 +285,8 @@ function extraSettings() {
 function removeLocation() {
   locations.remove(locations.selectedIndex);
   if (locations.value == "") {
-    locations.style.display = "none";
-    goBtn.style.display = "none";
+    locations.disabled = true;
+    goBtn.disabled = true;
     removeBtn.disabled = true;
   }
 }
@@ -306,7 +299,6 @@ function goLocation() {
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   if (topBtn.innerText == "Top") {
-    // storeLocation();
     addLocation("Last location");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -333,6 +325,8 @@ function addLocation(content = "") {
   locations.style.display = "block";
   goBtn.style.display = "block";
   removeBtn.disabled = false;
+  locations.disabled = false;
+  goBtn.disabled = false;
 }
 
 // for 'hide'
@@ -369,6 +363,12 @@ function isDarkModeEnabled() {
 function darkMode() {
   // toggle all relevant elemts-
   document.body.classList.toggle("dark-mode");
+  themeBtn.classList.toggle("dark-mode");
+  topBtn.classList.toggle("dark-mode");
+  hideBtn.classList.toggle("dark-mode");
+  saveBtn.classList.toggle("dark-mode");
+  removeBtn.classList.toggle("dark-mode");
+  goBtn.classList.toggle("dark-mode");
 }
 
 isDarkModeEnabled();

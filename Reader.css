@@ -1,5 +1,10 @@
+
+body {
+  background-color: lightblue;
+}
+
 .perButton{
-  display: none;
+  /* display: none; */
   font-size: 18px;
   margin: auto;
 }
@@ -11,10 +16,10 @@
 }
 
 .button{
-  display: none;
+  display: block;
   position: fixed;
   z-index: 99;
-  /* font-size: 18px; */
+  font-size: 18px;
   border: none;
   outline: none;
   color: white;
@@ -28,6 +33,10 @@
   bottom: 20px;
   right: 20px;
   background-color: rgb(131, 204, 228);
+}
+
+#topBtn[disabled] {
+  opacity: 25%;
 }
 
 #hideBtn {
@@ -48,6 +57,10 @@
   background-color: rgb(131, 204, 228);
 }
 
+#saveBtn[disabled] {
+  opacity: 25%;
+}
+
 #removeBtn {
   top: 80px;
   right: 20px;
@@ -64,25 +77,26 @@
   background-color: rgb(131, 204, 228);
 }
 
+#goBtn[disabled] {
+  opacity: 25%;
+}
+
 #themeBtn {
   top: 20px;
+  display: block;
   left: 20px;
   background-color: rgb(131, 204, 228);
 }
-
 
 .center {
   text-align: center;
   margin: 0 auto;
 }
 
-body {
-  background-color: lightblue;
-}
 
 #locations {
   position: fixed;
-  display: none;
+  display: block;
   top: 140px;
   right: 20px;
   width: 4%;
@@ -112,6 +126,50 @@ body {
 /* dark mode */
 
 .dark-mode {
-  background-color: black;
+  background-color: rgb(37, 25, 43);
+  color: white; 
+}
+
+
+#themeBtn.dark-mode  {
+  background-color: rgb(58, 39, 68);
   color: white;
 }
+
+
+#topBtn.dark-mode  {
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
+#hideBtn.dark-mode  {
+  background-color: rgb(37, 25, 43);
+  color: rgb(37, 25, 43); 
+
+}
+
+#hideBtn.dark-mode:hover  {
+  background-color: rgb(37, 25, 43);
+  color: rgb(58, 39, 68);
+
+}
+/* color: rgb(58, 39, 68); */
+
+
+#saveBtn.dark-mode  {
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
+
+#removeBtn.dark-mode  {
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
+
+#goBtn.dark-mode  {
+  background-color: rgb(58, 39, 68);
+  color: white;
+}
+
