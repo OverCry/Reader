@@ -1,4 +1,3 @@
-
 body {
   background-color: lightblue;
 }
@@ -27,6 +26,7 @@ body {
   padding: 15px;
   border-radius: 4px;
   width: 4%;
+  height: 50px;
 }
 
 .button{
@@ -41,6 +41,8 @@ body {
   padding: 15px;
   border-radius: 4px;
   width: 4%;
+  height: 50px;
+
 }
 
 #topBtn {
@@ -124,7 +126,6 @@ body {
   opacity: 25%;
 }
 
-
 .center {
   text-align: center;
   margin: 0 auto;
@@ -150,9 +151,6 @@ body {
 #settings{
   display: none;
 }
-
-
-
 
 #pageSelection{
   display: none;

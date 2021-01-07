@@ -51,11 +51,14 @@ var filepicker = document.getElementById("filepicker");
  *
  *
  * styling
- *
+ * make an alert for deleteing
+ * maybe resize buttons on width change?
+ * 
+ * maybe on scroll, making all buttons disappear
+ * then on hover, show again?
  *
  * maybe turn settings into a alert box?
  *
- *  * fix button scalling
  * ctrl k - > 0(zero) to collapse all
  *
  */
@@ -148,8 +151,7 @@ displayType.addEventListener(
 
 //populating the image on the screen, depending on the setting
 function populateImage() {
-  let innerInput = ""; //puts visually  in order stored
-  // console.log(filePersistance.length==0);
+  let innerInput = ""; 
   //TODO CHANGE
   if (displayType.value == "ALL") {
     /****/
@@ -203,12 +205,12 @@ window.onresize = function () {
 //function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    topBtn.style.display="block";
     if (displayType.value == "ALL") {
       saveBtn.disabled = false;
       topBtn.disabled = false;
     }
 
-    // console.log(combo.value);
     if (locations.value != "") {
       locations.style.display = "block";
       goBtn.style.display = "block";
@@ -253,7 +255,6 @@ function back() {
   document.documentElement.scrollTop = 0;
 }
 function pageTurn() {
-  // console.log(imagePosition);
   if (imagePosition == 0) {
     nextBtn.style.display = "block";
     backBtn.style.display = "none";
@@ -299,11 +300,11 @@ function goLocation() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  if (topBtn.innerText == "Top") {
+  
     addLocation("Last location");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
+  
 }
 
 // add location to combobox
@@ -386,7 +387,7 @@ function increaseWidth(){
 function decreaseWidth(){
   widthPBtn.disabled=false;
   imageList.style.width = (Number(imageList.style.width.replace("%","")) - 5 )+ "%";
-  if (imageList.style.width == "50%"){
+  if (imageList.style.width == "40%"){
     // imageList.style.width = "5%";
 
     widthMBtn.disabled=true;
@@ -395,7 +396,6 @@ function decreaseWidth(){
 
 function detectWidth() {
   var width = document.body.clientWidth;
-  console.log(width);
   
   //smaller than some amount
   if (width>1800){
