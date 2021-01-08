@@ -60,6 +60,7 @@ body {
   left: 10px;
   background-color: lightblue;
   color: lightblue;
+  z-index: 99;
 }
 
 #hideBtn:hover {
@@ -222,4 +223,42 @@ body {
 
 #extraTools {
   display: none;
+}
+
+
+/** alerts*/
+
+#block  {
+  z-index: 100;
+  background-color: black;
+  display: flex;
+  opacity: 50%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  right: 0%;
+  display: none;
+}
+
+#alert {
+  z-index: 101;  
+  background-color: white;
+  display: flex;
+  opacity: 75%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200px, -100px);
+  width: 400px;
+  height: 200px;
+
+}
+
+#deleteAlert{
+  resize: none;
+  font-size: px;
+  max-width: 400px;
+  max-height: 100px;
+  border: none ;
 }

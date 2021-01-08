@@ -17,7 +17,6 @@ const iList = document.getElementById("imageList");
 
 //*** input box*/
 var pages = document.getElementById("pages");
-// var description = document.getElementById("description");
 
 /*** buttons */
 var backBtn = document.getElementById("backBtn");
@@ -37,6 +36,7 @@ var forPage = document.getElementById("forPage");
 var settings = document.getElementById("settings");
 var extraTools = document.getElementById("extraTools");
 var imageList = document.getElementById("imageList");
+var block = document.getElementById("block");
 
 
 /** combo boxes */
@@ -46,22 +46,7 @@ var locations = document.getElementById("locations");
 /** searchbox */
 var filepicker = document.getElementById("filepicker");
 
-//todo
-/**
- *
- *
- * styling
- * make an alert for deleteing
- * maybe resize buttons on width change?
- * 
- * maybe on scroll, making all buttons disappear
- * then on hover, show again?
- *
- * maybe turn settings into a alert box?
- *
- * ctrl k - > 0(zero) to collapse all
- *
- */
+
 
 //event listner to display updated files
 filepicker.addEventListener(
@@ -118,7 +103,24 @@ filepicker.addEventListener(
   false
 );
 
+//event listner to check if page is being selected
+//reset page value on change
+displayType.addEventListener(
+  "change",
+  function (event) {
+    //pages
+    if (event.target.selectedIndex == 2) {
+      forPage.style.display = "block";
+    } else {
+      forPage.style.display = "none";
+      pages.value = "1";
+    }
+  },
+  false
+);
+
 //calculate the directory breakpoints
+//for page mode
 function calculateDirectory() {
   let compareDir = relative(filePersistance[0]);
   let index = 0;
@@ -134,25 +136,10 @@ function calculateDirectory() {
   console.log(directoryStart);
 }
 
-//event listner to check if page is being selected
-displayType.addEventListener(
-  "change",
-  function (event) {
-    //pages
-    if (event.target.selectedIndex == 2) {
-      forPage.style.display = "block";
-    } else {
-      forPage.style.display = "none";
-      pages.value = "1";
-    }
-  },
-  false
-);
-
 //populating the image on the screen, depending on the setting
 function populateImage() {
+
   let innerInput = ""; 
-  //TODO CHANGE
   if (displayType.value == "ALL") {
     /****/
     for (let file of filePersistance) {
@@ -161,7 +148,6 @@ function populateImage() {
   } else if (displayType.value == "PAGE") {
     document.getElementById("pageSelection").style.display = "block";
 
-    //todo dumb for loop maybe have something better
     for (i = 0; i < pages.value; i++) {
       if (filePersistance.length > imagePosition + i) {
         innerInput +=
@@ -189,6 +175,8 @@ function populateImage() {
   iList.innerHTML = innerInput;
 }
 
+//private function used to calculate the relative path of the file
+//used for directory mode
 function relative(file) {
   return file.webkitRelativePath.replace(file.name, "");
 }
@@ -198,11 +186,12 @@ window.onscroll = function () {
   scrollFunction();
 };
 
+// Resizing width of buttons depending on the size
 window.onresize = function () {
   detectWidth();
 }
 
-//function actiavted on scroll
+//private function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     topBtn.style.display="block";
@@ -272,7 +261,7 @@ function pageTurn() {
   }
 }
 
-//settings
+//setting function to open/close options
 function extraSettings() {
   if (settingBtn.innerText == "Extra Settings") {
     settingBtn.innerText = "Hide Settings";
@@ -293,7 +282,7 @@ function removeLocation() {
   }
 }
 
-//todo maybe change scroll; go to selected comboboxvalue
+//go to selected comboboxvalue
 function goLocation() {
   document.documentElement.scrollTop = locations.value;
 }
@@ -306,7 +295,6 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
   
 }
-
 // add location to combobox
 function addLocation(content = "") {
   var today = new Date();
@@ -330,30 +318,36 @@ function addLocation(content = "") {
   locations.disabled = false;
   goBtn.disabled = false;
 }
-
-// for 'hide'
-function hideFunction() {
-  if (hideBtn.innerText != "Show") {
-    storeLocation();
-    hideBtn.innerText = "Show";
-    display.style.display = "none";
-  } else {
-    hideBtn.innerText = "Hide";
-    display.style.display = "block";
-
-    returnLocation();
-  }
-}
+//functions to store scroll distance
 function storeLocation() {
   lastBodyPosition = document.body.scrollTop;
   lastElementPosition = document.documentElement.scrollTop;
 }
+//functions to return to stored scroll distance
 function returnLocation() {
   document.body.scrollTop = lastBodyPosition;
   document.documentElement.scrollTop = lastElementPosition;
 }
 
-function isDarkModeEnabled() {
+// for 'hide' all content
+function hideFunction() {
+  if (hideBtn.innerText != "S") {
+    storeLocation();
+    hideBtn.innerText = "S";
+    display.style.display = "none";
+    themeBtn.style.display = "none";
+    block.style.display = "block";
+  } else {
+    hideBtn.innerText = "H";
+    display.style.display = "block";
+    themeBtn.style.display = "block";
+    block.style.display = "none";
+    returnLocation();
+  }
+}
+
+// detecting users preferance
+function checkDarkMode() {
   if (
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -362,6 +356,7 @@ function isDarkModeEnabled() {
   }
 }
 
+//toggling desired theme
 function darkMode() {
   // toggle all relevant elemts-
   document.body.classList.toggle("dark-mode");
@@ -375,6 +370,7 @@ function darkMode() {
   widthPBtn.classList.toggle("dark-mode");
 }
 
+//functions to modify image displayed 
 function increaseWidth(){
   widthMBtn.disabled=false;
   imageList.style.width = (Number(imageList.style.width.replace("%","")) + 5 )+ "%";
@@ -383,7 +379,6 @@ function increaseWidth(){
     widthPBtn.disabled=true;
   }
 }
-
 function decreaseWidth(){
   widthPBtn.disabled=false;
   imageList.style.width = (Number(imageList.style.width.replace("%","")) - 5 )+ "%";
@@ -394,6 +389,7 @@ function decreaseWidth(){
   }
 }
 
+// function when window is resized
 function detectWidth() {
   var width = document.body.clientWidth;
   
@@ -401,21 +397,18 @@ function detectWidth() {
   if (width>1800){
     themeBtn.innerText="Mode";
     topBtn.innerText="Top";
-    hideBtn.innerText="Hide";
     saveBtn.innerText="Add";
     removeBtn.innerText="Del";
     goBtn.innerText="Go";
   } else if (width>1200) {
     themeBtn.innerText="M";
     topBtn.innerText="T";
-    hideBtn.innerText="H";
     saveBtn.innerText="A";
     removeBtn.innerText="R";
     goBtn.innerText="G";
   } else {
     themeBtn.innerText="";
     topBtn.innerText="";
-    hideBtn.innerText="";
     saveBtn.innerText="";
     removeBtn.innerText="";
     goBtn.innerText="";
@@ -424,5 +417,5 @@ function detectWidth() {
 }
 
 //set dark mode theme if default
-isDarkModeEnabled();
+checkDarkMode();
 detectWidth();

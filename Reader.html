@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- <img  src="C:\Users\Wong\Downloads\test\1.png" class="center"> -->
-
 <html>
 <script defer="defer" src="Reader.js"></script>
 
@@ -10,43 +8,48 @@
 </head>
 
 <body id="body">
-  <button onclick="hideFunction()" accesskey="q" class="button" id="hideBtn">
-    Hide
-  </button>
+  <div id="block"></div>
 
   <button onclick="darkMode()" class="button" id="themeBtn" title="Change Mode">
     Mode
   </button>
 
-  <button onclick="increaseWidth()" accesskey="+" class="hiddenButton" id="widthPBtn" title="Increase Image Size" disabled="true">
-    +
-  </button>
-
-  <button onclick="decreaseWidth()" accesskey="-" class="hiddenButton" id="widthMBtn" title="Decrease Image Size">
-    -
+  <button onclick="hideFunction()" accesskey="q" class="button" id="hideBtn">
+    H
   </button>
 
   <div class="center" id="display">
     <div id="extraTools">
-      <!-- functionality for saving locations -->
       <select id="locations" class="combo" disabled="true">
       </select>
 
-      <button onclick="addLocation()"  class="button" id="saveBtn" title="Save" disabled="true">
-        Add
-      </button>
+      <div id="forLocations">
+        <button onclick="addLocation()" class="button" id="saveBtn" title="Save" disabled="true">
+          Add
+        </button>
 
-      <button onclick="removeLocation()" class="button" id="removeBtn" title="Remove" disabled="false">
-        Del
-      </button>
+        <button onclick="removeLocation()" class="button" id="removeBtn" title="Remove" disabled="false">
+          Del
+        </button>
 
-      <button onclick="goLocation()" class="button" id="goBtn" title="Go" disabled="true">
-        Go
-      </button>
+        <button onclick="goLocation()" class="button" id="goBtn" title="Go" disabled="true">
+          Go
+        </button>
 
-      <button onclick="topFunction()" class="button" id="topBtn" title="Go to top">
-        Top
-      </button>
+        <button onclick="topFunction()" class="button" id="topBtn" title="Go to top">
+          Top
+        </button>
+      </div>
+
+      <div id="forDirection">
+        <button onclick="increaseWidth()" accesskey="+" class="hiddenButton" id="widthPBtn" title="Increase Image Size"
+          disabled="true">
+          +
+        </button>
+        <button onclick="decreaseWidth()" accesskey="-" class="hiddenButton" id="widthMBtn" title="Decrease Image Size">
+          -
+        </button>
+      </div>
 
     </div>
 
@@ -54,25 +57,24 @@
     <label for="filepicker">Select Directory:</label>
     <input type="file" id="filepicker" name="fileList" webkitdirectory multiple /><br><br>
 
-    <button onclick="extraSettings()"  id="settingBtn" title="Settings">
+    <button onclick="extraSettings()" id="settingBtn" title="Settings">
       Extra Settings
     </button><br><br>
-      <div id="settings">
-        <label for="displayType">How would you like it to be displayed:</label>
-        <select id="displayType" class="combo">
-          <option value="ALL">All files</option>
-          <option value="DIRECTORY">Per Directory</option>
-          <option value="PAGE">By Pages</option>
-        </select>
-        <div id="forPage">
-          <label for="pages">Pages at a time:</label>
-          <input type="text" id="pages" min="1" max="100" value="1" required maxlength="3" size="4" /><br><br>
-        </div>
+    <div id="settings">
+      <label for="displayType">How would you like it to be displayed:</label>
+      <select id="displayType" class="combo">
+        <option value="ALL">All files</option>
+        <option value="DIRECTORY">Per Directory</option>
+        <option value="PAGE">By Pages</option>
+      </select>
+      <div id="forPage">
+        <label for="pages">Pages at a time:</label>
+        <input type="text" id="pages" min="1" max="100" value="1" required maxlength="3" size="4" /><br><br>
       </div>
+    </div>
 
     <hr width="80%" />
 
-    
     <div id="imageList" style="width:100%"></div>
     <div class="center" id="pageSelection">
       <hr width=80%>
@@ -93,6 +95,7 @@
       </table>
     </div>
   </div>
+
 </body>
 
 </html>
