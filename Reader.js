@@ -46,10 +46,12 @@ var locations = document.getElementById("locations");
 /** searchbox */
 var filepicker = document.getElementById("filepicker");
 
+var drop = document.getElementById("drop");
+
 
 
 //event listner to display updated files
-filepicker.addEventListener(
+drop.addEventListener(
   "change",
   function (event) {
     // change file list to an array
@@ -414,6 +416,12 @@ function detectWidth() {
     goBtn.innerText="";
   }
 
+}
+
+function display(){
+  var x = document.getElementById('entry_value')
+  document.getElementById('fileName').innerHTML = x.value.split('\\').pop()
+  alert()
 }
 
 //set dark mode theme if default
