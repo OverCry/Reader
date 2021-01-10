@@ -44,12 +44,10 @@ var displayType = document.getElementById("displayType");
 var locations = document.getElementById("locations");
 
 /** searchbox */
-var filepicker = document.getElementById("filepicker");
-
 var drop = document.getElementById("drop");
 
 
-
+//todo maybe just change this into an onchange function
 //event listner to display updated files
 drop.addEventListener(
   "change",
@@ -64,7 +62,7 @@ drop.addEventListener(
       return;
     }
 
-    //display scalling
+    //display scalling abilities
     widthPBtn.style.display="block";
     widthMBtn.style.display="block";
 
@@ -418,12 +416,7 @@ function detectWidth() {
 
 }
 
-function display(){
-  var x = document.getElementById('entry_value')
-  document.getElementById('fileName').innerHTML = x.value.split('\\').pop()
-  alert()
-}
-
 //set dark mode theme if default
 checkDarkMode();
+//detect window width
 detectWidth();
