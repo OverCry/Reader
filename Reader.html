@@ -41,27 +41,28 @@
         </button>
       </div>
 
-      <div id="forDirection">
-        <button onclick="increaseWidth()" accesskey="+" class="hiddenButton" id="widthPBtn" title="Increase Image Size"
-          disabled="true">
-          +
-        </button>
-        <button onclick="decreaseWidth()" accesskey="-" class="hiddenButton" id="widthMBtn" title="Decrease Image Size">
-          -
-        </button>
-      </div>
 
     </div>
 
-    <p>Provide the directory of files you would like to see</p>
-    <label for="filepicker">Select Directory:</label>
-    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple /><br><br>
 
+    <div id="drop" class="center">
+      <form>
+        <p>Provide the directory of files you would like to see</p>
+
+        <div class="form">
+          <input placeholder="Provide the directory of files you would like to see" id="drop" ref="fileInput"
+            type="file" webkitdirectory multiple>
+        </div>
+      </form>
+    </div>
+
+    <br>
     <button onclick="extraSettings()" id="settingBtn" title="Settings">
       Extra Settings
-    </button><br><br>
+    </button><br>
+
     <div id="settings">
-      <label for="displayType">How would you like it to be displayed:</label>
+      <br><label for="displayType">How would you like it to be displayed:</label>
       <select id="displayType" class="combo">
         <option value="ALL">All files</option>
         <option value="DIRECTORY">Per Directory</option>
@@ -72,7 +73,6 @@
         <input type="text" id="pages" min="1" max="100" value="1" required maxlength="3" size="4" /><br><br>
       </div>
     </div>
-
     <hr width="80%" />
 
     <div id="imageList" style="width:100%"></div>
@@ -94,6 +94,18 @@
         </tr>
       </table>
     </div>
+
+    <div id="forDirection">
+      <button onclick="increaseWidth()" accesskey="+" class="hiddenButton" id="widthPBtn" title="Increase Image Size"
+        disabled="true">
+        +
+      </button>
+      <button onclick="decreaseWidth()" accesskey="-" class="hiddenButton" id="widthMBtn" title="Decrease Image Size">
+        -
+      </button>
+    </div>
+
+  </div>
   </div>
 
 </body>

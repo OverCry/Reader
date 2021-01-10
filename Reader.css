@@ -2,19 +2,19 @@ body {
   background-color: lightblue;
 }
 
-.dirButton{
+.dirButton {
   display: none;
   font-size: 18px;
   margin: auto;
 }
 
-#settingsBtn{
+#settingsBtn {
   display: block;
   font-size: 12px;
   margin: auto;
 }
 
-.hiddenButton{
+.hiddenButton {
   display: none;
   position: fixed;
   z-index: 99;
@@ -29,7 +29,7 @@ body {
   height: 50px;
 }
 
-.button{
+.button {
   display: block;
   position: fixed;
   z-index: 99;
@@ -42,7 +42,6 @@ body {
   border-radius: 4px;
   width: 4%;
   height: 50px;
-
 }
 
 #topBtn {
@@ -105,7 +104,7 @@ body {
   background-color: rgb(131, 204, 228);
 }
 
-#widthPBtn{
+#widthPBtn {
   /* display: none; */
   bottom: 140px;
   right: 20px;
@@ -116,7 +115,7 @@ body {
   opacity: 25%;
 }
 
-#widthMBtn{
+#widthMBtn {
   /* display: none; */
   bottom: 80px;
   right: 20px;
@@ -149,15 +148,15 @@ body {
   width: 10%;
 }
 
-#settings{
+#settings {
   display: none;
 }
 
-#pageSelection{
+#pageSelection {
   display: none;
 }
 
-#forPage{
+#forPage {
   display: none;
 }
 
@@ -171,52 +170,50 @@ body {
 /* dark mode */
 .dark-mode {
   background-color: rgb(37, 25, 43);
-  color: white; 
+  color: white;
 }
 
-#themeBtn.dark-mode  {
+#themeBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#topBtn.dark-mode  {
+#topBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#hideBtn.dark-mode  {
+#hideBtn.dark-mode {
   background-color: rgb(37, 25, 43);
-  color: rgb(37, 25, 43); 
-
+  color: rgb(37, 25, 43);
 }
 
-#hideBtn.dark-mode:hover  {
+#hideBtn.dark-mode:hover {
   background-color: rgb(37, 25, 43);
   color: rgb(58, 39, 68);
-
 }
 
-#saveBtn.dark-mode  {
+#saveBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#removeBtn.dark-mode  {
+#removeBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#goBtn.dark-mode  {
+#goBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#widthPBtn.dark-mode{
+#widthPBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
 
-#widthMBtn.dark-mode{
+#widthMBtn.dark-mode {
   background-color: rgb(58, 39, 68);
   color: white;
 }
@@ -225,10 +222,9 @@ body {
   display: none;
 }
 
-
 /** alerts*/
 
-#block  {
+#block {
   z-index: 100;
   background-color: black;
   display: flex;
@@ -239,4 +235,37 @@ body {
   bottom: 0%;
   right: 0%;
   display: none;
+}
+
+#drop {
+  width: 60%;
+}
+
+.form {
+  position: relative;
+  width: 100%;
+  border: 3px dashed grey;
+  border-radius: 10px;
+}
+
+.form div {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 170px;
+  color: black;
+  font-family: Arial;
+  position: absolute;
+  top: 10%;
+  z-index: -1;
+}
+
+.form input {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
 }
