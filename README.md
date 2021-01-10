@@ -6,7 +6,7 @@ A web page intended to display images in natural order. This was originally made
 2. The webpage allows image scaling.
 3. The webpage allows theme changes.
 4. The webpage allows 'locations' to be saved.
-5. The webpage allows drag-and-drop (incomplete).
+5. The webpage allows drag-and-drop
 
 ## Future Improvements
 1. Allow more protection when deleting saved locations
