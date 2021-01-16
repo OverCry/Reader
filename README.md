@@ -11,5 +11,5 @@ A web page intended to display images in natural order. This was originally made
 
 ## Future Improvements
 1. Allow more protection when deleting saved locations
-2. Add content on the 'hidden' layer
-3. Allow 'pages' to jump, rather than next to each otehr
+2. Add content on the 'hidden' layer (Completed)
+3. Allow 'pages' to jump, rather than next to each other
