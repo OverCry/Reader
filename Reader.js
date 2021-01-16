@@ -8,14 +8,14 @@ let imagePosition = 0;
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
 let darkTheme = false;
-var onTab;
+var onTab = false;
 
 let currentDir = "";
 let directoryStart = [0];
 
 /*** collection */
 const iList = document.getElementById("imageList");
-const vList = document.getElementById("vList");
+// const vList = document.getElementById("vList");
 
 //*** input box*/
 var pages = document.getElementById("pages");
@@ -27,7 +27,6 @@ var nextBtn = document.getElementById("nextBtn");
 var topBtn = document.getElementById("topBtn");
 var hideBtn = document.getElementById("hideBtn");
 var saveBtn = document.getElementById("saveBtn");
-var goBtn = document.getElementById("goBtn");
 var removeBtn = document.getElementById("removeBtn");
 var settingBtn = document.getElementById("settingBtn");
 var themeBtn = document.getElementById("themeBtn");
@@ -192,17 +191,16 @@ window.onresize = function () {
   detectWidth();
 };
 
+window.onfocus = function () {
+  onTab = true;
+};
 
-window.onfocus = function () { 
-  onTab = true; 
-}; 
+window.onblur = function () {
+  onTab = false;
+};
 
-window.onblur = function () { 
-  onTab = false; 
-}; 
-
-setInterval(function () { 
-  if(!window.onTab){
+setInterval(function () {
+  if (!window.onTab) {
     if (hideBtn.innerText != "S") {
       hideFunction();
     }
@@ -220,9 +218,7 @@ function scrollFunction() {
 
     if (locations.value != "") {
       locations.style.display = "block";
-      goBtn.style.display = "block";
       removeBtn.disabled = false;
-      goBtn.disabled = false;
       locations.disabled = false;
     }
   } else {
@@ -230,7 +226,6 @@ function scrollFunction() {
     topBtn.disabled = true;
     removeBtn.disabled = true;
     locations.disabled = true;
-    goBtn.disabled = true;
   }
 
   if (locations.value != "" && document.documentElement.scrollTop > 2000) {
@@ -295,7 +290,6 @@ function removeLocation() {
   locations.remove(locations.selectedIndex);
   if (locations.value == "") {
     locations.disabled = true;
-    goBtn.disabled = true;
     removeBtn.disabled = true;
   }
 }
@@ -329,10 +323,8 @@ function addLocation(content = "") {
   );
 
   locations.style.display = "block";
-  goBtn.style.display = "block";
   removeBtn.disabled = false;
   locations.disabled = false;
-  goBtn.disabled = false;
 }
 //functions to store scroll distance
 function storeLocation() {
@@ -353,18 +345,11 @@ function hideFunction() {
     display.style.display = "none";
     themeBtn.style.display = "none";
     block.style.display = "block";
-    // vList.style.display = "block";
-
-    
   } else {
     hideBtn.innerText = "H";
     display.style.display = "block";
     themeBtn.style.display = "block";
     block.style.display = "none";
-    // vList.style.display = "none";
-    // alert(vList.style.display);
-
-
     returnLocation();
   }
 }
@@ -388,7 +373,6 @@ function darkMode() {
   hideBtn.classList.toggle("dark-mode");
   saveBtn.classList.toggle("dark-mode");
   removeBtn.classList.toggle("dark-mode");
-  goBtn.classList.toggle("dark-mode");
   widthMBtn.classList.toggle("dark-mode");
   widthPBtn.classList.toggle("dark-mode");
 }
@@ -418,7 +402,7 @@ function decreaseWidth() {
 function detectWidth() {
   var width = document.body.clientWidth;
 
-  //TODO modify 
+  //TODO modify
 
   //smaller than some amount
   if (width > 1800) {
@@ -438,7 +422,6 @@ function detectWidth() {
     topBtn.innerText = "";
     saveBtn.innerText = "";
     removeBtn.innerText = "";
-    goBtn.innerText = "";
   }
 }
 
@@ -448,7 +431,7 @@ function addUrl() {
     temp = temp.substr(0, temp.indexOf("&"));
   }
 
-  temp = temp.substr(temp.indexOf("=")+1)
+  temp = temp.substr(temp.indexOf("=") + 1);
 
   console.log(iframeVid);
   iframeVid.setAttribute(

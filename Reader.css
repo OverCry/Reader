@@ -8,12 +8,6 @@ body {
   margin: auto;
 }
 
-#settingsBtn {
-  display: block;
-  font-size: 12px;
-  margin: auto;
-}
-
 .hiddenButton {
   display: none;
   position: fixed;
@@ -44,6 +38,12 @@ body {
   height: 50px;
 }
 
+#settingsBtn {
+  display: block;
+  font-size: 12px;
+  margin: auto;
+}
+
 #topBtn {
   bottom: 20px;
   right: 20px;
@@ -57,14 +57,13 @@ body {
 #hideBtn {
   bottom: 20px;
   left: 10px;
-  background-color: lightblue;
-  color: lightblue;
+  background-color: transparent;
+  color: transparent;
   z-index: 99;
 }
 
 #hideBtn:hover {
   color: rgb(142, 209, 231);
-  /* color: lightblue; */
 }
 
 #saveBtn {
@@ -184,12 +183,10 @@ body {
 }
 
 #hideBtn.dark-mode {
-  background-color: rgb(37, 25, 43);
   color: rgb(37, 25, 43);
 }
 
 #hideBtn.dark-mode:hover {
-  background-color: rgb(37, 25, 43);
   color: rgb(58, 39, 68);
 }
 
@@ -256,12 +253,13 @@ body {
 /***/
 
 #url {
+  z-index: 99;
   height: 40px;
   line-height: 40px;
 }
 
-#block {
-  z-index: 100;
+#dark {
+  z-index: 98;
   background-color: black;
   display: flex;
   opacity: 50%;
@@ -270,36 +268,26 @@ body {
   left: 0%;
   bottom: 0%;
   right: 0%;
-  display: none;
+  display: block;
 }
 
-#vList {
-  background-color: red;
+/* #vList {
   z-index: 150;
-}
+} */
 
 #videoDiv {
-  /* background-color: red; */
-
+  z-index: 99;
   position: relative;
-  padding-bottom: 56.5%;
-  height: 0;  
-
-  /* padding-bottom: 56.25%; */
-  /* top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  width:50%;
-  height: 50%; */
+  padding-top: 56.5%;
+  height: 0;
 }
 
 #iframeVid {
-  /* padding-top: 56.25%; */
   position: absolute;
-  top: 10%;
-  bottom: 10%;
-  left: 10%;
-  right: 10%;
-  width:80%;
-  height:80%;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 90%;
 }

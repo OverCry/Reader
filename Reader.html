@@ -112,13 +112,17 @@
 
   <div id="block" class='center'>
 
-    <input type="text" id="url" value="https://www.youtube.com/watch?v=UEbd9hm7kLM" onchange="addUrl()" size="50" />
+
+    <div id="dark"></div>
 
     <div class="center" id="videoDiv">
-      <span id="vList">
-        <iframe id="iframeVid" src="https://www.youtube.com/embed/UEbd9hm7kLM"
-          frameborder="0" gesture="media" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </span>
+      <input type="text" id="url" value="https://www.youtube.com/watch?v=UEbd9hm7kLM" onchange="addUrl()" size="50" />
+
+      <!-- if a list of videos is wanted -->
+      <!-- <span id="vList"> -->
+      <iframe id="iframeVid" src="https://www.youtube.com/embed/UEbd9hm7kLM" frameborder="0"
+        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <!-- </span> -->
     </div>
 
   </div>
