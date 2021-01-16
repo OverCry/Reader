@@ -258,18 +258,6 @@ body {
   line-height: 40px;
 }
 
-#dark {
-  z-index: 98;
-  background-color: black;
-  display: flex;
-  opacity: 50%;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  bottom: 0%;
-  right: 0%;
-  display: block;
-}
 
 /* #vList {
   z-index: 150;
