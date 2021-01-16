@@ -258,6 +258,9 @@ body {
   line-height: 40px;
 }
 
+#block{
+  display: none;
+}
 
 /* #vList {
   z-index: 150;

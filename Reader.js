@@ -205,7 +205,7 @@ setInterval(function () {
       hideFunction();
     }
   }
-}, 100);
+}, 10000);
 
 //private function actiavted on scroll
 function scrollFunction() {
