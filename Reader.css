@@ -255,6 +255,11 @@ body {
 
 /***/
 
+#url {
+  height: 40px;
+  line-height: 40px;
+}
+
 #block {
   z-index: 100;
   background-color: black;
@@ -274,23 +279,27 @@ body {
 }
 
 #videoDiv {
-  background-color: red;
+  /* background-color: red; */
 
-  position: absolute;
-  /* top: 05%;
-  left: 05%;
-  bottom: 05%;
-  right: 05%;
-  padding-top: 56.25%; */
-  top:50%;
+  position: relative;
+  padding-bottom: 56.5%;
+  height: 0;  
+
+  /* padding-bottom: 56.25%; */
+  /* top:50%;
   left:50%;
   transform: translate(-50%,-50%);
   width:50%;
-  height: 50%;
+  height: 50%; */
 }
 
-#url {
-  height: 40px;
-  line-height: 40px;
-  
+#iframeVid {
+  /* padding-top: 56.25%; */
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+  width:80%;
+  height:80%;
 }
