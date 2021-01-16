@@ -222,7 +222,38 @@ body {
   display: none;
 }
 
-/** alerts*/
+/** drag and drop*/
+
+.form {
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  width: 40%;
+  height: 60px;
+  border: 3px dashed grey;
+  border-radius: 20px;
+}
+
+.form div {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  z-index: -1;
+}
+
+.form input {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+
+/***/
 
 #block {
   z-index: 100;
@@ -237,36 +268,29 @@ body {
   display: none;
 }
 
-
-/** drag and drop*/
-
-
-.form{
-  text-align: center;
-  margin: 0 auto;
-  position: relative;
-  width: 40%;
-  height: 60px;
-  border: 3px dashed grey;
-  border-radius: 20px;
-  
-  }
-  .form div{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  position: absolute;
-  top: 10%;
-  z-index: -1;
+#vList {
+  background-color: red;
+  z-index: 150;
 }
-  
-  .form input{
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  opacity: 0;
-  }
 
+#videoDiv {
+  background-color: red;
+
+  position: absolute;
+  /* top: 05%;
+  left: 05%;
+  bottom: 05%;
+  right: 05%;
+  padding-top: 56.25%; */
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width:50%;
+  height: 50%;
+}
+
+#url {
+  height: 40px;
+  line-height: 40px;
+  
+}

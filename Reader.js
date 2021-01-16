@@ -8,15 +8,18 @@ let imagePosition = 0;
 let lastBodyPosition = 0;
 let lastElementPosition = 0;
 let darkTheme = false;
+var onTab;
 
 let currentDir = "";
 let directoryStart = [0];
 
-/*** image collection */
+/*** collection */
 const iList = document.getElementById("imageList");
+const vList = document.getElementById("vList");
 
 //*** input box*/
 var pages = document.getElementById("pages");
+var url = document.getElementById("url");
 
 /*** buttons */
 var backBtn = document.getElementById("backBtn");
@@ -38,7 +41,6 @@ var extraTools = document.getElementById("extraTools");
 var imageList = document.getElementById("imageList");
 var block = document.getElementById("block");
 
-
 /** combo boxes */
 var displayType = document.getElementById("displayType");
 var locations = document.getElementById("locations");
@@ -46,6 +48,8 @@ var locations = document.getElementById("locations");
 /** searchbox */
 var drop = document.getElementById("drop");
 
+/** iFrame */
+var iframeVid = document.getElementById("iframeVid");
 
 //todo maybe just change this into an onchange function
 //event listner to display updated files
@@ -63,8 +67,8 @@ drop.addEventListener(
     }
 
     //display scalling abilities
-    widthPBtn.style.display="block";
-    widthMBtn.style.display="block";
+    widthPBtn.style.display = "block";
+    widthMBtn.style.display = "block";
 
     // sort array to natural sort
     filePersistance.sort(function (a, b) {
@@ -89,9 +93,8 @@ drop.addEventListener(
     }
 
     if (displayType.value == "ALL") {
-      extraTools.style.display="block";
+      extraTools.style.display = "block";
     }
-
 
     //disable display method and/or pages
     displayType.disabled = true;
@@ -133,13 +136,11 @@ function calculateDirectory() {
     index++;
   }
   directoryStart.push(filePersistance.length);
-  console.log(directoryStart);
 }
 
 //populating the image on the screen, depending on the setting
 function populateImage() {
-
-  let innerInput = ""; 
+  let innerInput = "";
   if (displayType.value == "ALL") {
     /****/
     for (let file of filePersistance) {
@@ -189,12 +190,29 @@ window.onscroll = function () {
 // Resizing width of buttons depending on the size
 window.onresize = function () {
   detectWidth();
-}
+};
+
+
+window.onfocus = function () { 
+  onTab = true; 
+}; 
+
+window.onblur = function () { 
+  onTab = false; 
+}; 
+
+setInterval(function () { 
+  if(!window.onTab){
+    if (hideBtn.innerText != "S") {
+      hideFunction();
+    }
+  }
+}, 100);
 
 //private function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display="block";
+    topBtn.style.display = "block";
     if (displayType.value == "ALL") {
       saveBtn.disabled = false;
       topBtn.disabled = false;
@@ -289,11 +307,9 @@ function goLocation() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  
-    addLocation("Last location");
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  
+  addLocation("Last location");
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 // add location to combobox
 function addLocation(content = "") {
@@ -337,11 +353,18 @@ function hideFunction() {
     display.style.display = "none";
     themeBtn.style.display = "none";
     block.style.display = "block";
+    // vList.style.display = "block";
+
+    
   } else {
     hideBtn.innerText = "H";
     display.style.display = "block";
     themeBtn.style.display = "block";
     block.style.display = "none";
+    // vList.style.display = "none";
+    // alert(vList.style.display);
+
+
     returnLocation();
   }
 }
@@ -370,50 +393,70 @@ function darkMode() {
   widthPBtn.classList.toggle("dark-mode");
 }
 
-//functions to modify image displayed 
-function increaseWidth(){
-  widthMBtn.disabled=false;
-  imageList.style.width = (Number(imageList.style.width.replace("%","")) + 5 )+ "%";
-  if (imageList.style.width == "100%"){
+//functions to modify image displayed
+function increaseWidth() {
+  widthMBtn.disabled = false;
+  imageList.style.width =
+    Number(imageList.style.width.replace("%", "")) + 5 + "%";
+  if (imageList.style.width == "100%") {
     // imageList.style.width = "100%";
-    widthPBtn.disabled=true;
+    widthPBtn.disabled = true;
   }
 }
-function decreaseWidth(){
-  widthPBtn.disabled=false;
-  imageList.style.width = (Number(imageList.style.width.replace("%","")) - 5 )+ "%";
-  if (imageList.style.width == "40%"){
+function decreaseWidth() {
+  widthPBtn.disabled = false;
+  imageList.style.width =
+    Number(imageList.style.width.replace("%", "")) - 5 + "%";
+  if (imageList.style.width == "40%") {
     // imageList.style.width = "5%";
 
-    widthMBtn.disabled=true;
+    widthMBtn.disabled = true;
   }
 }
 
 // function when window is resized
 function detectWidth() {
   var width = document.body.clientWidth;
-  
+
+  //TODO modify 
+
   //smaller than some amount
-  if (width>1800){
-    themeBtn.innerText="Mode";
-    topBtn.innerText="Top";
-    saveBtn.innerText="Add";
-    removeBtn.innerText="Del";
-    goBtn.innerText="Go";
-  } else if (width>1200) {
-    themeBtn.innerText="M";
-    topBtn.innerText="T";
-    saveBtn.innerText="A";
-    removeBtn.innerText="R";
-    goBtn.innerText="G";
+  if (width > 1800) {
+    themeBtn.innerText = "Mode";
+    topBtn.innerText = "Top";
+    saveBtn.innerText = "Add";
+    removeBtn.innerText = "Del";
+    goBtn.innerText = "Go";
+  } else if (width > 1200) {
+    themeBtn.innerText = "M";
+    topBtn.innerText = "T";
+    saveBtn.innerText = "A";
+    removeBtn.innerText = "R";
+    goBtn.innerText = "G";
   } else {
-    themeBtn.innerText="";
-    topBtn.innerText="";
-    saveBtn.innerText="";
-    removeBtn.innerText="";
-    goBtn.innerText="";
+    themeBtn.innerText = "";
+    topBtn.innerText = "";
+    saveBtn.innerText = "";
+    removeBtn.innerText = "";
+    goBtn.innerText = "";
+  }
+}
+
+function addUrl() {
+  let temp = url.value;
+  if (temp.includes("&")) {
+    temp = temp.substr(0, temp.indexOf("&"));
   }
 
+  temp = temp.substr(temp.indexOf("=")+1)
+
+  console.log(iframeVid);
+  iframeVid.setAttribute(
+    "src",
+    "https://www.youtube.com/embed/" +
+      (url.value.includes("playlist") ? "videoseries?list=" : "") +
+      temp
+  );
 }
 
 //set dark mode theme if default
