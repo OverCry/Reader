@@ -291,6 +291,7 @@ function removeLocation() {
   if (locations.value == "") {
     locations.disabled = true;
     removeBtn.disabled = true;
+    goBtn.disabled = true;
   }
 }
 
@@ -325,6 +326,7 @@ function addLocation(content = "") {
   locations.style.display = "block";
   removeBtn.disabled = false;
   locations.disabled = false;
+  goBtn.disabled = false;
 }
 //functions to store scroll distance
 function storeLocation() {
@@ -372,6 +374,7 @@ function darkMode() {
   topBtn.classList.toggle("dark-mode");
   hideBtn.classList.toggle("dark-mode");
   saveBtn.classList.toggle("dark-mode");
+  goBtn.classList.toggle("dark-mode");
   removeBtn.classList.toggle("dark-mode");
   widthMBtn.classList.toggle("dark-mode");
   widthPBtn.classList.toggle("dark-mode");
