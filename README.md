@@ -17,7 +17,7 @@ A web page intended to display images in natural order. This was originally made
 2. Add content on the 'hidden' layer (Completed)
 3. Allow 'pages' to jump, rather than next to each other
 
-# Tech
+# Interesting Tech
 
 Alongside trying to modify a previous project of using pure JS without any external packages, this repo is my experiment with some different packages I have found to be interesting
 
