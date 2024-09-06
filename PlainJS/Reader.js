@@ -10,50 +10,50 @@ let lastElementPosition = 0;
 let darkTheme = false;
 var onTab = false;
 
-let currentDir = "";
+let currentDir = '';
 let directoryStart = [0];
 
 /*** collection */
-const iList = document.getElementById("imageList");
+const iList = document.getElementById('imageList');
 // const vList = document.getElementById("vList");
 
 //*** input box*/
-var pages = document.getElementById("pages");
-var url = document.getElementById("url");
+var pages = document.getElementById('pages');
+var url = document.getElementById('url');
 
 /*** buttons */
-var backBtn = document.getElementById("backBtn");
-var nextBtn = document.getElementById("nextBtn");
-var topBtn = document.getElementById("topBtn");
-var hideBtn = document.getElementById("hideBtn");
-var saveBtn = document.getElementById("saveBtn");
-var removeBtn = document.getElementById("removeBtn");
-var settingBtn = document.getElementById("settingBtn");
-var themeBtn = document.getElementById("themeBtn");
-var widthPBtn = document.getElementById("widthPBtn");
-var widthMBtn = document.getElementById("widthMBtn");
+var backBtn = document.getElementById('backBtn');
+var nextBtn = document.getElementById('nextBtn');
+var topBtn = document.getElementById('topBtn');
+var hideBtn = document.getElementById('hideBtn');
+var saveBtn = document.getElementById('saveBtn');
+var removeBtn = document.getElementById('removeBtn');
+var settingBtn = document.getElementById('settingBtn');
+var themeBtn = document.getElementById('themeBtn');
+var widthPBtn = document.getElementById('widthPBtn');
+var widthMBtn = document.getElementById('widthMBtn');
 
 /** div */
-var forPage = document.getElementById("forPage");
-var settings = document.getElementById("settings");
-var extraTools = document.getElementById("extraTools");
-var imageList = document.getElementById("imageList");
-var block = document.getElementById("block");
+var forPage = document.getElementById('forPage');
+var settings = document.getElementById('settings');
+var extraTools = document.getElementById('extraTools');
+var imageList = document.getElementById('imageList');
+var block = document.getElementById('block');
 
 /** combo boxes */
-var displayType = document.getElementById("displayType");
-var locations = document.getElementById("locations");
+var displayType = document.getElementById('displayType');
+var locations = document.getElementById('locations');
 
 /** searchbox */
-var drop = document.getElementById("drop");
+var drop = document.getElementById('drop');
 
 /** iFrame */
-var iframeVid = document.getElementById("iframeVid");
+var iframeVid = document.getElementById('iframeVid');
 
 //todo maybe just change this into an onchange function
 //event listner to display updated files
 drop.addEventListener(
-  "change",
+  'change',
   function (event) {
     // change file list to an array
     filePersistance = [].slice.call(event.target.files);
@@ -66,8 +66,8 @@ drop.addEventListener(
     }
 
     //display scalling abilities
-    widthPBtn.style.display = "block";
-    widthMBtn.style.display = "block";
+    widthPBtn.style.display = 'block';
+    widthMBtn.style.display = 'block';
 
     // sort array to natural sort
     filePersistance.sort(function (a, b) {
@@ -76,23 +76,23 @@ drop.addEventListener(
         undefined,
         {
           numeric: true,
-          sensitivity: "base",
+          sensitivity: 'base',
         }
       );
     });
 
     //hide extra settings if needed
-    if (settingBtn.innerText != "Extra Settings") {
+    if (settingBtn.innerText != 'Extra Settings') {
       extraSettings();
     }
 
     //calculate directory breaks if required
-    if (displayType.value == "DIRECTORY") {
+    if (displayType.value == 'DIRECTORY') {
       calculateDirectory();
     }
 
-    if (displayType.value == "ALL") {
-      extraTools.style.display = "block";
+    if (displayType.value == 'ALL') {
+      extraTools.style.display = 'block';
     }
 
     //disable display method and/or pages
@@ -108,14 +108,14 @@ drop.addEventListener(
 //event listner to check if page is being selected
 //reset page value on change
 displayType.addEventListener(
-  "change",
+  'change',
   function (event) {
     //pages
     if (event.target.selectedIndex == 2) {
-      forPage.style.display = "block";
+      forPage.style.display = 'block';
     } else {
-      forPage.style.display = "none";
-      pages.value = "1";
+      forPage.style.display = 'none';
+      pages.value = '1';
     }
   },
   false
@@ -139,14 +139,14 @@ function calculateDirectory() {
 
 //populating the image on the screen, depending on the setting
 function populateImage() {
-  let innerInput = "";
-  if (displayType.value == "ALL") {
+  let innerInput = '';
+  if (displayType.value == 'ALL') {
     /****/
     for (let file of filePersistance) {
       innerInput += imgStart + URL.createObjectURL(file) + imgEnd;
     }
-  } else if (displayType.value == "PAGE") {
-    document.getElementById("pageSelection").style.display = "block";
+  } else if (displayType.value == 'PAGE') {
+    document.getElementById('pageSelection').style.display = 'block';
 
     for (i = 0; i < pages.value; i++) {
       if (filePersistance.length > imagePosition + i) {
@@ -158,8 +158,8 @@ function populateImage() {
         break;
       }
     }
-  } else if (displayType.value == "DIRECTORY") {
-    document.getElementById("pageSelection").style.display = "block";
+  } else if (displayType.value == 'DIRECTORY') {
+    document.getElementById('pageSelection').style.display = 'block';
 
     //calculate dir starts
 
@@ -178,7 +178,7 @@ function populateImage() {
 //private function used to calculate the relative path of the file
 //used for directory mode
 function relative(file) {
-  return file.webkitRelativePath.replace(file.name, "");
+  return file.webkitRelativePath.replace(file.name, '');
 }
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -199,25 +199,25 @@ window.onblur = function () {
   onTab = false;
 };
 
-setInterval(function () {
-  if (!window.onTab) {
-    if (hideBtn.innerText != "S") {
-      hideFunction();
-    }
-  }
-}, 10000);
+// setInterval(function () {
+//   if (!window.onTab) {
+//     if (hideBtn.innerText != 'S') {
+//       // hideFunction(); // transition
+//     }
+//   }
+// }, 10000);
 
 //private function actiavted on scroll
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display = "block";
-    if (displayType.value == "ALL") {
+    topBtn.style.display = 'block';
+    if (displayType.value == 'ALL') {
       saveBtn.disabled = false;
       topBtn.disabled = false;
     }
 
-    if (locations.value != "") {
-      locations.style.display = "block";
+    if (locations.value != '') {
+      locations.style.display = 'block';
       removeBtn.disabled = false;
       locations.disabled = false;
     }
@@ -228,10 +228,10 @@ function scrollFunction() {
     locations.disabled = true;
   }
 
-  if (locations.value != "" && document.documentElement.scrollTop > 2000) {
+  if (locations.value != '' && document.documentElement.scrollTop > 2000) {
     if (
       locations.options[locations.options.length - 1].text.includes(
-        "Last location"
+        'Last location'
       )
     ) {
       //todo use remove function method
@@ -258,37 +258,37 @@ function back() {
 }
 function pageTurn() {
   if (imagePosition == 0) {
-    nextBtn.style.display = "block";
-    backBtn.style.display = "none";
+    nextBtn.style.display = 'block';
+    backBtn.style.display = 'none';
   } else if (
-    (displayType.value == "PAGE" &&
+    (displayType.value == 'PAGE' &&
       imagePosition + pages.value * 1 < filePersistance.length) ||
-    (displayType.value == "DIRECTORY" &&
+    (displayType.value == 'DIRECTORY' &&
       imagePosition < directoryStart.length - 2)
   ) {
-    nextBtn.style.display = "block";
-    backBtn.style.display = "block";
+    nextBtn.style.display = 'block';
+    backBtn.style.display = 'block';
   } else {
-    nextBtn.style.display = "none";
-    backBtn.style.display = "block";
+    nextBtn.style.display = 'none';
+    backBtn.style.display = 'block';
   }
 }
 
 //setting function to open/close options
 function extraSettings() {
-  if (settingBtn.innerText == "Extra Settings") {
-    settingBtn.innerText = "Hide Settings";
-    settings.style.display = "block";
+  if (settingBtn.innerText == 'Extra Settings') {
+    settingBtn.innerText = 'Hide Settings';
+    settings.style.display = 'block';
   } else {
-    settingBtn.innerText = "Extra Settings";
-    settings.style.display = "none";
+    settingBtn.innerText = 'Extra Settings';
+    settings.style.display = 'none';
   }
 }
 
 //delete the selected location
 function removeLocation() {
   locations.remove(locations.selectedIndex);
-  if (locations.value == "") {
+  if (locations.value == '') {
     locations.disabled = true;
     removeBtn.disabled = true;
     goBtn.disabled = true;
@@ -302,28 +302,28 @@ function goLocation() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  addLocation("Last location");
+  addLocation('Last location');
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
 // add location to combobox
-function addLocation(content = "") {
+function addLocation(content = '') {
   var today = new Date();
   let hour = today.getHours();
   let minute = today.getMinutes();
   let second = today.getSeconds();
   var time =
-    (hour < 10 ? "0" + hour : hour) +
-    ":" +
-    (minute < 10 ? "0" + minute : minute) +
-    ":" +
-    (second < 10 ? "0" + second : second);
+    (hour < 10 ? '0' + hour : hour) +
+    ':' +
+    (minute < 10 ? '0' + minute : minute) +
+    ':' +
+    (second < 10 ? '0' + second : second);
   locations.options[locations.options.length] = new Option(
-    time + ": " + content,
+    time + ': ' + content,
     document.documentElement.scrollTop
   );
 
-  locations.style.display = "block";
+  locations.style.display = 'block';
   removeBtn.disabled = false;
   locations.disabled = false;
   goBtn.disabled = false;
@@ -341,17 +341,17 @@ function returnLocation() {
 
 // for 'hide' all content
 function hideFunction() {
-  if (hideBtn.innerText != "S") {
+  if (hideBtn.innerText != 'S') {
     storeLocation();
-    hideBtn.innerText = "S";
-    display.style.display = "none";
-    themeBtn.style.display = "none";
-    block.style.display = "block";
+    hideBtn.innerText = 'S';
+    display.style.display = 'none';
+    themeBtn.style.display = 'none';
+    block.style.display = 'block';
   } else {
-    hideBtn.innerText = "H";
-    display.style.display = "block";
-    themeBtn.style.display = "block";
-    block.style.display = "none";
+    hideBtn.innerText = 'H';
+    display.style.display = 'block';
+    themeBtn.style.display = 'block';
+    block.style.display = 'none';
     returnLocation();
   }
 }
@@ -360,7 +360,7 @@ function hideFunction() {
 function checkDarkMode() {
   if (
     window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
+    window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
     darkMode();
   }
@@ -369,23 +369,23 @@ function checkDarkMode() {
 //toggling desired theme
 function darkMode() {
   // toggle all relevant elemts-
-  document.body.classList.toggle("dark-mode");
-  themeBtn.classList.toggle("dark-mode");
-  topBtn.classList.toggle("dark-mode");
-  hideBtn.classList.toggle("dark-mode");
-  saveBtn.classList.toggle("dark-mode");
-  goBtn.classList.toggle("dark-mode");
-  removeBtn.classList.toggle("dark-mode");
-  widthMBtn.classList.toggle("dark-mode");
-  widthPBtn.classList.toggle("dark-mode");
+  document.body.classList.toggle('dark-mode');
+  themeBtn.classList.toggle('dark-mode');
+  topBtn.classList.toggle('dark-mode');
+  hideBtn.classList.toggle('dark-mode');
+  saveBtn.classList.toggle('dark-mode');
+  goBtn.classList.toggle('dark-mode');
+  removeBtn.classList.toggle('dark-mode');
+  widthMBtn.classList.toggle('dark-mode');
+  widthPBtn.classList.toggle('dark-mode');
 }
 
 //functions to modify image displayed
 function increaseWidth() {
   widthMBtn.disabled = false;
   imageList.style.width =
-    Number(imageList.style.width.replace("%", "")) + 5 + "%";
-  if (imageList.style.width == "100%") {
+    Number(imageList.style.width.replace('%', '')) + 5 + '%';
+  if (imageList.style.width == '100%') {
     // imageList.style.width = "100%";
     widthPBtn.disabled = true;
   }
@@ -393,8 +393,8 @@ function increaseWidth() {
 function decreaseWidth() {
   widthPBtn.disabled = false;
   imageList.style.width =
-    Number(imageList.style.width.replace("%", "")) - 5 + "%";
-  if (imageList.style.width == "40%") {
+    Number(imageList.style.width.replace('%', '')) - 5 + '%';
+  if (imageList.style.width == '40%') {
     // imageList.style.width = "5%";
 
     widthMBtn.disabled = true;
@@ -409,38 +409,38 @@ function detectWidth() {
 
   //smaller than some amount
   if (width > 1800) {
-    themeBtn.innerText = "Mode";
-    topBtn.innerText = "Top";
-    saveBtn.innerText = "Add";
-    removeBtn.innerText = "Del";
-    goBtn.innerText = "Go";
+    themeBtn.innerText = 'Mode';
+    topBtn.innerText = 'Top';
+    saveBtn.innerText = 'Add';
+    removeBtn.innerText = 'Del';
+    goBtn.innerText = 'Go';
   } else if (width > 1200) {
-    themeBtn.innerText = "M";
-    topBtn.innerText = "T";
-    saveBtn.innerText = "A";
-    removeBtn.innerText = "R";
-    goBtn.innerText = "G";
+    themeBtn.innerText = 'M';
+    topBtn.innerText = 'T';
+    saveBtn.innerText = 'A';
+    removeBtn.innerText = 'R';
+    goBtn.innerText = 'G';
   } else {
-    themeBtn.innerText = "";
-    topBtn.innerText = "";
-    saveBtn.innerText = "";
-    removeBtn.innerText = "";
+    themeBtn.innerText = '';
+    topBtn.innerText = '';
+    saveBtn.innerText = '';
+    removeBtn.innerText = '';
   }
 }
 
 function addUrl() {
   let temp = url.value;
-  if (temp.includes("&")) {
-    temp = temp.substr(0, temp.indexOf("&"));
+  if (temp.includes('&')) {
+    temp = temp.substr(0, temp.indexOf('&'));
   }
 
-  temp = temp.substr(temp.indexOf("=") + 1);
+  temp = temp.substr(temp.indexOf('=') + 1);
 
   console.log(iframeVid);
   iframeVid.setAttribute(
-    "src",
-    "https://www.youtube.com/embed/" +
-      (url.value.includes("playlist") ? "videoseries?list=" : "") +
+    'src',
+    'https://www.youtube.com/embed/' +
+      (url.value.includes('playlist') ? 'videoseries?list=' : '') +
       temp
   );
 }
