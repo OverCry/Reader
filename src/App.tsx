@@ -1,6 +1,7 @@
 import { Card } from '@mui/material';
 import './App.css';
 import Settings from './components/Settings';
+import React from 'react'; //needed otherwise eslint complains
 
 function App() {
   return (

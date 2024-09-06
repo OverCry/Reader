@@ -1,11 +1,16 @@
 import React from 'react';
 
 const Settings = () => {
-    let double = "double"
+  const double = 'Double';
 
-    let single = 'single'
+  const single = 'single';
 
-  return <div>Settings</div>;
+  return (
+    <div>
+      Settings{double}
+      {single}
+    </div>
+  );
 };
 
 export default Settings;
