@@ -29,9 +29,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepare": "husky install",
-    "eslint": "eslint --quiet --fix",
-    "prettier": "prettier --write --ignore-unknown"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [

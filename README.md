@@ -1,4 +1,4 @@
-# Directory reader
+# [Directory reader](https://OverCry.github.io/Reader)
 
 A web page intended to display images in natural order. This was originally made in mine to read long strip, webtoon-like content which do not display well when they are not joined together.
 
@@ -58,3 +58,50 @@ This repo use Husky, which was something I spent some time implementing on my wo
 ### Steps
 
 1. Install relevant packages (using your preferred package manager)
+
+```
+npm init @eslint/config
+npm i -D husky lint-staged prettier eslint-config-prettier
+```
+
+2. Add `.prettierrc`, `.eslintignore`, and `prettierignore` into the root director
+
+3. Add files to ignore (node_modules, etc.) into the `*ignore` files prettier settings into `.prettierrc`. A sample would be 
+
+```
+{
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": true,
+  "printWidth": 120,
+  "proseWrap": "always",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "useTabs": false
+}
+```
+
+4. Initialize husky with `npx husky-init`
+
+5. In `package.json`, add `"lint-staged": "lint-staged"` as a script, as well as 
+
+```
+  "lint-staged": {
+    "*.{js, jsx,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "*.{json,js,ts,jsx,tsx,html}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+```
+into the file as well
+
+6. Edit `.husky/pre-commit` and change the command to `npm run lint-staged`
