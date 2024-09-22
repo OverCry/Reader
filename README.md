@@ -53,7 +53,9 @@ npm install gh-pages --save-dev
 
 ## [husky](https://typicode.github.io/husky/)
 
-This repo use Husky, which was something I spent some time implementing on my work repo. Personally, I always find that the steps I've used in the past will end up failing in some way. However, I have found the experience using it worth the effort in figuring out how to implement Husky into the particular project structure
+This repo use Husky, which was something I spent some time implementing on my work repo. Personally, I always find that the steps I've used in the past will end up failing in some way. However, I have found the experience using it worth the effort in figuring out how to implement Husky into the particular project structure.
+
+These particular steps were done with reference to this [guide](https://dev.to/shashwatnautiyal/complete-guide-to-eslint-prettier-husky-and-lint-staged-fh9)
 
 ### Steps
 
