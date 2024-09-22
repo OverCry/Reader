@@ -1,15 +1,28 @@
-import React from 'react';
+import { Drawer } from '@mui/material';
+import React, { useContext } from 'react';
+import DirectoryContext from '../AppContext/Provider/DirectoryContext';
 
 const Settings = () => {
-  const double = 'Double';
+  const { openNav, setOpenNav } = useContext(DirectoryContext);
 
-  const single = 'single';
+  const closeDraw = () => {
+    if (setOpenNav) {
+      setOpenNav(false);
+    }
+  };
 
   return (
-    <div>
-      Settings{double}
-      {single}
-    </div>
+    <Drawer
+      key={`drawer_navMainDefault`}
+      {...{
+        sx: { zIndex: 3000 },
+        variant: 'temporary',
+        ModalProps: { keepMounted: true },
+        PaperProps: {},
+        open: openNav,
+        onClose: closeDraw,
+      }}
+    ></Drawer>
   );
 };
 
