@@ -1,5 +1,6 @@
-import DirectoryContext from '@MainContext';
+// import DirectoryContext from '@MainContext';
 import { Drawer } from '@mui/material';
+import { DirectoryContext } from '../AppContext/Provider';
 import React, { useContext } from 'react';
 
 const Settings = () => {
