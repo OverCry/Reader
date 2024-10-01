@@ -6,3 +6,7 @@ export const cleanLocal = () => {
 export const cleanAll = () => {
   localStorage.clear();
 };
+
+export const setLastDirectory = (path: string) => {
+  localStorage.setItem('Directory', path);
+};

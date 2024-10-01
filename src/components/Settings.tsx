@@ -1,6 +1,6 @@
+import DirectoryContext from '@MainContext';
 import { Drawer } from '@mui/material';
 import React, { useContext } from 'react';
-import DirectoryContext from '../AppContext/Provider/DirectoryContext';
 
 const Settings = () => {
   const { openNav, setOpenNav } = useContext(DirectoryContext);
@@ -22,7 +22,9 @@ const Settings = () => {
         open: openNav,
         onClose: closeDraw,
       }}
-    ></Drawer>
+    >
+      wuzzup
+    </Drawer>
   );
 };
 
