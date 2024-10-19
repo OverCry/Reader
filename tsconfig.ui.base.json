@@ -2,13 +2,13 @@
   "compilerOptions": {
     "composite": false,
     "noEmit": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      // "@MainContext/*": ["./AppContext/Provider/DirectoryContext"],
-      // "@LocalStorage/*": ["./AppContext/LocalStorage/localStorage"],
-      // "@Colours/*": ["./Theme/colours"],
-      "@GenericFunctions": ["src/components/Support/genericFunctions"]
-      // "@Headers/*": ["./components/Support/headers"]
+      "@MainContext": ["./AppContext/Provider/DirectoryContext"],
+      "@LocalStorage": ["./AppContext/LocalStorage/localStorage"],
+      "@Colours": ["./Theme/colours"],
+      "@GenericFunctions": ["./components/Support/genericFunctions"],
+      "@Headers": ["./components/Support/headers"]
     }
   }
 }
