@@ -1,6 +1,7 @@
 # [Directory reader](https://OverCry.github.io/Reader)
 
-A web page intended to display images in natural order. This was originally made in mine to read long strip, webtoon-like content which do not display well when they are not joined together.
+A web page intended to display images in natural order. This was originally made in mine to read long strip,
+webtoon-like content which do not display well when they are not joined together.
 
 ## Goals
 
@@ -19,11 +20,13 @@ A web page intended to display images in natural order. This was originally made
 
 # Interesting Tech
 
-Alongside trying to modify a previous project of using pure JS without any external packages, this repo is my experiment with some different packages I have found to be interesting
+Alongside trying to modify a previous project of using pure JS without any external packages, this repo is my experiment
+with some different packages I have found to be interesting
 
 ## [gh-pages](https://www.npmjs.com/package/gh-pages)
 
-One of the things this repo is experimenting with is the package `gh-pages`, which has been suggested for deploying React-based projects as a GitHub page
+One of the things this repo is experimenting with is the package `gh-pages`, which has been suggested for deploying
+React-based projects as a GitHub page
 
 ### Steps
 
@@ -53,9 +56,12 @@ npm install gh-pages --save-dev
 
 ## [husky](https://typicode.github.io/husky/)
 
-This repo use Husky, which was something I spent some time implementing on my work repo. Personally, I always find that the steps I've used in the past will end up failing in some way. However, I have found the experience using it worth the effort in figuring out how to implement Husky into the particular project structure.
+This repo use Husky, which was something I spent some time implementing on my work repo. Personally, I always find that
+the steps I've used in the past will end up failing in some way. However, I have found the experience using it worth the
+effort in figuring out how to implement Husky into the particular project structure.
 
-These particular steps were done with reference to this [guide](https://dev.to/shashwatnautiyal/complete-guide-to-eslint-prettier-husky-and-lint-staged-fh9)
+These particular steps were done with reference to this
+[guide](https://dev.to/shashwatnautiyal/complete-guide-to-eslint-prettier-husky-and-lint-staged-fh9)
 
 ### Steps
 
@@ -68,7 +74,8 @@ npm i -D husky lint-staged prettier eslint-config-prettier
 
 2. Add `.prettierrc`, `.eslintignore`, and `prettierignore` into the root director
 
-3. Add files to ignore (node_modules, etc.) into the `*ignore` files prettier settings into `.prettierrc`. A sample would be 
+3. Add files to ignore (node_modules, etc.) into the `*ignore` files prettier settings into `.prettierrc`. A sample
+   would be
 
 ```
 {
@@ -92,7 +99,7 @@ npm i -D husky lint-staged prettier eslint-config-prettier
 
 4. Initialize husky with `npx husky-init`
 
-5. In `package.json`, add `"lint-staged": "lint-staged"` as a script, as well as 
+5. In `package.json`, add `"lint-staged": "lint-staged"` as a script, as well as
 
 ```
   "lint-staged": {
@@ -104,6 +111,26 @@ npm i -D husky lint-staged prettier eslint-config-prettier
     ]
   },
 ```
+
 into the file as well
 
 6. Edit `.husky/pre-commit` and change the command to `npm run lint-staged`
+
+## [craco](https://www.npmjs.com/package/@craco/craco)
+
+I tried using craco as I wanted to try using alias for my imports, and from doing some research and asking around, it
+seemed like the default `react-scripts` no longer
+[supported such functionality](https://github.com/facebook/create-react-app/issues/12047#issuecomment-1214344699).
+
+### Steps
+
+1. Install the package with
+
+```
+npm i -D @craco/craco
+```
+
+2. Change the start/build/test scripts in `package.json` to use `craco` rather than `react-scripts`
+
+3. Set up a basic `craco.config.ts` file to define the alias we wish to use (which also needs to be replicated in the
+   `tsconfig.json` for the alias to function)
