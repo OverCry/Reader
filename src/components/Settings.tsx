@@ -1,6 +1,5 @@
-// import DirectoryContext from '@MainContext';
+import DirectoryContext from '@MainContext';
 import { Drawer } from '@mui/material';
-import { DirectoryContext } from '../AppContext/Provider';
 import React, { useContext } from 'react';
 
 const Settings = () => {
@@ -14,17 +13,18 @@ const Settings = () => {
 
   return (
     <Drawer
-      key={`drawer_navMainDefault`}
+      key={`drawer_settings`}
       {...{
         sx: { zIndex: 3000 },
         variant: 'temporary',
+        anchor: 'right',
         ModalProps: { keepMounted: true },
         PaperProps: {},
         open: openNav,
         onClose: closeDraw,
       }}
     >
-      wuzzup
+      settings TBD
     </Drawer>
   );
 };

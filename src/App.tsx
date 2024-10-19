@@ -1,18 +1,21 @@
 import React, { useState } from 'react'; //needed otherwise eslint complains
-import DirectoryContext from './AppContext/Provider/DirectoryContext';
 import Settings from './components/Settings';
+import ViewMenu from './components/ViewMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { AppBar, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import { theme } from './Theme/muiTheme';
-// import IsMobile from '@GenericFunctions';
+import DirectoryContext from '@MainContext';
 
 function App() {
   const [openNav, setOpenNav] = useState<boolean>(false);
+  const [openView, setOpenView] = useState<boolean>(false);
 
-  // const [isMobile, isLandscape] = IsMobile()
+  const triggerView = () => {
+    setOpenView(!openView);
+  };
 
-  const triggerDrawer = () => {
+  const triggerSetting = () => {
     setOpenNav(!openNav);
   };
 
@@ -24,6 +27,8 @@ function App() {
             page: 0,
             openNav,
             setOpenNav,
+            openView,
+            setOpenView,
           }}
         >
           <AppBar position='fixed' color='primary' sx={{ bottom: 'auto', top: 0 }}>
@@ -36,20 +41,17 @@ function App() {
                 color='inherit'
                 aria-label='menu'
                 sx={{ mr: 2 }}
-                onClick={triggerDrawer}
+                onClick={triggerView}
               >
                 <MenuIcon />
               </IconButton>
               <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}></Typography>
-              <IconButton color='inherit' key={'Settings'}>
+              <IconButton size='large' color='inherit' aria-label='menu' key={'Settings'} onClick={triggerSetting}>
                 <SettingsIcon />
               </IconButton>
             </Toolbar>
           </AppBar>
-          {/* Creater Header */}
-          {/* <div style={{ minHeight: '100vh', backgroundColor: 'red' }}></div>
-          <div style={{ minHeight: '100vh', backgroundColor: 'blue' }}></div> */}
-
+          <ViewMenu />
           <Settings />
         </DirectoryContext.Provider>
       </ThemeProvider>
