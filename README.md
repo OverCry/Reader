@@ -134,3 +134,13 @@ npm i -D @craco/craco
 
 3. Set up a basic `craco.config.ts` file to define the alias we wish to use (which also needs to be replicated in the
    `tsconfig.json` for the alias to function)
+
+## [react-dropzone](https://www.npmjs.com/package/react-dropzone)
+
+I tried to do what I originally did with basic JS, which is to use the `webkitdirectory` attribute on the `input`
+component. However, even when making a custom `custom.d.ts` file to overwrite the standard props.
+
+Doing a bit of Googling, react-dropzone seemed to do what I wanted to do automatically, which is why it is included
+here.
+
+Overall, it seems like a relatively straightforward package that does what it says on the tin.
