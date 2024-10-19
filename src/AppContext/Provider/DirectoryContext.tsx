@@ -1,4 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react'; // Dispatch, SetStateAction
+import { FileWithPath } from 'react-dropzone/.';
 
 interface DirectoryContextInterface {
   page: number;
@@ -8,6 +9,8 @@ interface DirectoryContextInterface {
   setOpenView: Dispatch<SetStateAction<boolean>> | undefined;
   mobile?: boolean;
   landscape?: boolean;
+  files: FileWithPath[] | undefined;
+  setFiles: Dispatch<SetStateAction<FileWithPath[]>> | undefined;
 }
 
 export const DirectoryContext = createContext<DirectoryContextInterface>({
@@ -18,6 +21,8 @@ export const DirectoryContext = createContext<DirectoryContextInterface>({
   setOpenView: undefined,
   mobile: false,
   landscape: false,
+  files: undefined,
+  setFiles: undefined,
 });
 
 export default DirectoryContext;

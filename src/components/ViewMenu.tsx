@@ -2,9 +2,18 @@ import DirectoryContext from '@MainContext';
 import { Button } from '@mui/material';
 import { Drawer } from '@mui/material';
 import React, { useContext } from 'react';
+import { useEffect } from 'react';
+import { FileWithPath, useDropzone } from 'react-dropzone';
 
 const ViewMenu = () => {
-  const { openView, setOpenView } = useContext(DirectoryContext);
+  const { openView, setOpenView, setFiles } = useContext(DirectoryContext);
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+
+  useEffect(() => {
+    if (setFiles) {
+      setFiles(acceptedFiles as FileWithPath[]);
+    }
+  }, [acceptedFiles]);
 
   const closeDraw = () => {
     if (setOpenView) {
@@ -46,6 +55,10 @@ const ViewMenu = () => {
             Select File
           </Button>
         </label>
+      </div>
+      <div {...getRootProps({ className: 'dropzone' })}>
+        <input {...getInputProps()} />
+        <p>Drag and drop some files here, or click to select files</p>
       </div>
     </Drawer>
   );

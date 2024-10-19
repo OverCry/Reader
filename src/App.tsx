@@ -6,10 +6,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { AppBar, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import { theme } from './Theme/muiTheme';
 import DirectoryContext from '@MainContext';
+import { FileWithPath } from 'react-dropzone';
+import DisplayContent from './components/DisplayContent';
+import { Box } from '@mui/system';
 
 function App() {
   const [openNav, setOpenNav] = useState<boolean>(false);
   const [openView, setOpenView] = useState<boolean>(false);
+  const [files, setFiles] = useState<FileWithPath[]>([]);
 
   const triggerView = () => {
     setOpenView(!openView);
@@ -29,6 +33,8 @@ function App() {
             setOpenNav,
             openView,
             setOpenView,
+            files,
+            setFiles,
           }}
         >
           <AppBar position='fixed' color='primary' sx={{ bottom: 'auto', top: 0 }}>
@@ -51,6 +57,9 @@ function App() {
               </IconButton>
             </Toolbar>
           </AppBar>
+          <Box component='main' sx={{ pt: 8 }}>
+            <DisplayContent />
+          </Box>
           <ViewMenu />
           <Settings />
         </DirectoryContext.Provider>
