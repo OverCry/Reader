@@ -5,8 +5,11 @@ A project setup to try out interesting packages with useful tools
 # Table Of Contents
 
 1. [Summary](#Summary)
+
    1. [Goals](#Goals)
    2. [Future Improvements](#Future-Improvements)
+   3. [Terminal Commands](#Terminal-Commands)
+
 2. [Interesting Tech](#Interesting-Tech)
    1. [gh-pages](#gh-pages)
    2. [husky](#husky)
@@ -35,6 +38,11 @@ webtoon-like content which do not display well when they are not joined together
 1. Allow more protection when deleting saved locations
 2. Add content on the 'hidden' layer (Completed)
 3. Allow 'pages' to jump, rather than next to each other
+
+### Terminal Commands
+
+TBD: Add script into postinstall to add script into `.zshrc`. To enable `Reader` command to trigger terminal script
+which will use `@inquirer/prompts`.
 
 # Interesting Tech
 
@@ -170,21 +178,25 @@ view.
 
 ## [@inquirer/prompts](https://www.npmjs.com/package/@inquirer/prompts)
 
+Install using:
+
+```
+npm i @inquirer/prompts
+```
+
 I saw this package being used to beautify the terminal with options. This will allow users to simplify commands that are
 executed via terminal.
 
 This package also allows descriptions to be added directly into the terminal, so that even if the developer forgets what
 the option represents, they can easily see what it represents
 
-```
-npm i @inquirer/prompts
-```
-
 ## [chalk](https://www.npmjs.com/package/chalk)
 
-This package allows colours to appear on terminal. This allows emphasis on certain aspects on teh terminal. This is
-being used in conjunction with `@inquirer/prompts` to improve the terminal experience
+Install using:
 
 ```
 npm i chalk
 ```
+
+This package allows colours to appear on terminal. This allows emphasis on certain aspects on teh terminal. This is
+being used in conjunction with `@inquirer/prompts` to improve the terminal experience
