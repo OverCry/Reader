@@ -6,15 +6,17 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@inquirer/prompts": "^7.1.0",
     "@mui/icons-material": "^6.1.1",
     "@mui/material": "^6.1.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.51",
+    "@types/node": "^22.9.3",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "chalk": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.9",
@@ -30,7 +32,10 @@
     "eject": "craco eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "./scripts/index.sh",
+    "options": "ts-node ./scripts/index.mjs",
+    "manual": "./scripts/index.sh"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [

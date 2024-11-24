@@ -1,5 +1,23 @@
 # [Directory reader](https://OverCry.github.io/Reader)
 
+A project setup to try out interesting packages with useful tools
+
+# Table Of Contents
+
+1. [Summary](#Summary)
+   1. [Goals](#Goals)
+   2. [Future Improvements](#Future-Improvements)
+2. [Interesting Tech](#Interesting-Tech)
+   1. [gh-pages](#gh-pages)
+   2. [husky](#husky)
+   3. [craco](#craco)
+   4. [react-dropzone](#react-dropzone)
+3. [User Styling](#User-Styling)
+   1. [@inquirer/prompts](#@inquirer/prompts)
+   2. [chalk](#chalk)
+
+# Summary
+
 A web page intended to display images in natural order. This was originally made in mine to read long strip,
 webtoon-like content which do not display well when they are not joined together.
 
@@ -144,3 +162,29 @@ Doing a bit of Googling, react-dropzone seemed to do what I wanted to do automat
 here.
 
 Overall, it seems like a relatively straightforward package that does what it says on the tin.
+
+# User Styling
+
+Alongside the interesting packages, there are also some interesting packages to make the user experience more clean to
+view.
+
+## [@inquirer/prompts](https://www.npmjs.com/package/@inquirer/prompts)
+
+I saw this package being used to beautify the terminal with options. This will allow users to simplify commands that are
+executed via terminal.
+
+This package also allows descriptions to be added directly into the terminal, so that even if the developer forgets what
+the option represents, they can easily see what it represents
+
+```
+npm i @inquirer/prompts
+```
+
+## [chalk](https://www.npmjs.com/package/chalk)
+
+This package allows colours to appear on terminal. This allows emphasis on certain aspects on teh terminal. This is
+being used in conjunction with `@inquirer/prompts` to improve the terminal experience
+
+```
+npm i chalk
+```
