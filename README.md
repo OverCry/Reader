@@ -5,11 +5,9 @@ A project setup to try out interesting packages with useful tools
 # Table Of Contents
 
 1. [Summary](#Summary)
-
    1. [Goals](#Goals)
    2. [Future Improvements](#Future-Improvements)
    3. [Terminal Commands](#Terminal-Commands)
-
 2. [Interesting Tech](#Interesting-Tech)
    1. [gh-pages](#gh-pages)
    2. [husky](#husky)
