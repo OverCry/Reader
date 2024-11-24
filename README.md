@@ -1,6 +1,6 @@
-# [Directory reader](https://OverCry.github.io/Reader)
+# [Directory reader](https://github.com/OverCry/Reader)
 
-A project setup to try out interesting packages with useful tools
+A [project](https://OverCry.github.io/Reader) setup to try out interesting packages with useful tools
 
 # Table Of Contents
 
