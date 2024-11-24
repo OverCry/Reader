@@ -7,7 +7,7 @@ const DisplayContent = () => {
   return (
     <div>
       {files?.map((content, i) => {
-        return <img key={i} src={URL.createObjectURL(content)} />;
+        return <img alt={content.name} key={i} src={URL.createObjectURL(content)} />;
       })}
     </div>
   );

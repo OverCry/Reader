@@ -3,12 +3,11 @@ import Settings from './components/Settings';
 import ViewMenu from './components/ViewMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AppBar, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import { theme } from './Theme/muiTheme';
 import DirectoryContext from '@MainContext';
 import { FileWithPath } from 'react-dropzone';
 import DisplayContent from './components/DisplayContent';
-import { Box } from '@mui/system';
 
 function App() {
   const [openNav, setOpenNav] = useState<boolean>(false);

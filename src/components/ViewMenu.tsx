@@ -13,7 +13,7 @@ const ViewMenu = () => {
     if (setFiles) {
       setFiles(acceptedFiles as FileWithPath[]);
     }
-  }, [acceptedFiles]);
+  }, [acceptedFiles, setFiles]);
 
   const closeDraw = () => {
     if (setOpenView) {
