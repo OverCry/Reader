@@ -7,7 +7,7 @@ export const main = async () => {
   stdout.write(chalk.bold.cyanBright(`\nReader Scripts\n\n`));
 
   const answer = await select({
-    message: 'Select a package manager',
+    message: 'Select command',
     choices: [
       {
         name: 'Run',
@@ -24,8 +24,17 @@ export const main = async () => {
         value: 'deploy',
         description: 'Deploy the application',
       },
+      {
+        name: 'Exit',
+        value: 'exit',
+        description: 'Close options',
+      },
     ],
   });
+
+  if (answer === 'exit') {
+    return;
+  }
 
   const command = `npm run ${answer}`;
 

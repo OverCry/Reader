@@ -4,10 +4,11 @@
 # 2. Edit source as required for shell
 SOURCE="bashrc"
 BARRIER="====================================="
+SH_NAME="readerAliases"
 
 # Add shortcut to .*rc
 addShortcut (){
-    COMMANDS="~/.homescripts/index.sh"
+    COMMANDS="~/.homescripts/$SH_NAME.sh"
 
     if [[ ! -z $(grep -F "source $COMMANDS" ~/.$SOURCE) ]]; then
         echo -e "Script \e[1;4;31m'source $COMMANDS'\e[0m has already been added!"
@@ -20,13 +21,13 @@ addShortcut (){
 
 addAndPresentAlias (){
     echo -e "\n\e[1;4;32mUpdate Alias\e[0m\n"
-    cp -r ./scripts/homescripts/. ~/.homescripts/
+    cp -r ./scripts/.homescripts/. ~/.homescripts/
 
     echo -e "Alias options added are:"
     # sed 's/^alias //' - Remove The alias line 
     # sed 's/^/- /' - Append Hyphen(-) to the start
     # sed 's/.*/\x1b[34m&\x1b[0m/' -  Colour the text to stand out
-    grep -E '^alias ' ~/.homescripts/index.sh | sed 's/^alias //' | sed 's/^/- /' | sed 's/.*/\x1b[34m&\x1b[0m/'
+    grep -E '^alias ' ~/.homescripts/$SH_NAME.sh | sed 's/^alias //' | sed 's/^/- /' | sed 's/.*/\x1b[34m&\x1b[0m/'
 
 }
 
