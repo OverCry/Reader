@@ -4,18 +4,34 @@ A [project](https://OverCry.github.io/Reader) setup to try out interesting packa
 
 # Table Of Contents
 
-1. [Summary](#Summary)
+1. [Setup](#Setup)
+2. [Summary](#Summary)
    1. [Goals](#Goals)
    2. [Future Improvements](#Future-Improvements)
    3. [Terminal Commands](#Terminal-Commands)
-2. [Interesting Tech](#Interesting-Tech)
+3. [Interesting Tech](#Interesting-Tech)
    1. [gh-pages](#gh-pages)
    2. [husky](#husky)
    3. [craco](#craco)
    4. [react-dropzone](#react-dropzone)
-3. [User Styling](#User-Styling)
+4. [User Styling](#User-Styling)
    1. [@inquirer/prompts](#@inquirer/prompts)
    2. [chalk](#chalk)
+
+# Setup
+
+The current project is currently set up with:
+
+- OS: `window`
+- Terminal: `bash`
+- node: `v20.17.0`
+- typescript: `5.6.2`
+
+To start:
+
+1. Update `setup.sh` variables
+2. Update `interpreter` in `readerAliases.sh`
+3. Run `npm install` to set up the project
 
 # Summary
 
@@ -35,7 +51,7 @@ webtoon-like content which do not display well when they are not joined together
 
 1. Allow more protection when deleting saved locations
 2. Add content on the 'hidden' layer (Completed)
-3. Allow 'pages' to jump, rather than next to each other
+3. Allow 'pages' to jump, rather than be next to each other
 
 ### Terminal Commands
 
