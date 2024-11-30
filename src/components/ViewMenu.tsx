@@ -22,8 +22,23 @@ const ViewMenu = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    console.log('event', event);
-    console.log('event.target', event.target.files);
+    const providedFileList = event.target.files;
+    if (providedFileList !== null && setFiles) {
+      //reformata for FileWithPath type
+      const fileList: File[] = [...providedFileList];
+      const providedFormattedList: FileWithPath[] = fileList.map((file: File) => {
+        const blob = new Blob([file], { type: file.type });
+
+        // Create a new File instance
+        const newFile = new File([blob], file.name, {
+          type: file.type,
+          lastModified: file.lastModified,
+        });
+
+        return newFile;
+      });
+      setFiles(providedFormattedList as FileWithPath[]);
+    }
   };
 
   return (
@@ -59,6 +74,7 @@ const ViewMenu = () => {
         <input {...getInputProps()} />
         <p>Drag and drop some files here, or click to select files</p>
       </div>
+      <p>{process.env.REACT_APP_CURRENT_DATE || 'wuzzup'}</p>
     </Drawer>
   );
 };

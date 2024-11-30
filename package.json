@@ -34,8 +34,9 @@
     "deploy": "gh-pages -d build",
     "prepare": "husky install",
     "postinstall": "sh ./scripts/setup.sh",
-    "options": "ts-node ./scripts/index.mjs",
-    "updateAlias": "npm run postinstall"
+    "options": "ts-node ./scripts/Menu.mjs",
+    "updateAlias": "npm run postinstall",
+    "WAH": "sh ./scripts/startup.sh"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [
