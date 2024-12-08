@@ -1,8 +1,10 @@
+import { stringifyInputs } from '@LocalStorage';
 import DirectoryContext from '@MainContext';
 import { Button, Drawer } from '@mui/material';
 import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
+import style from './ViewMenu.module.css';
 
 const ViewMenu = () => {
   const { openView, setOpenView, setFiles } = useContext(DirectoryContext);
@@ -10,7 +12,13 @@ const ViewMenu = () => {
 
   useEffect(() => {
     if (setFiles) {
-      setFiles(acceptedFiles as FileWithPath[]);
+      const readable = acceptedFiles as FileWithPath[];
+      if (readable.length > 0) {
+        console.log('Dragged in', readable);
+
+        stringifyInputs(readable);
+        setFiles(readable);
+      }
     }
   }, [acceptedFiles, setFiles]);
 
@@ -28,7 +36,6 @@ const ViewMenu = () => {
       const fileList: File[] = [...providedFileList];
       const providedFormattedList: FileWithPath[] = fileList.map((file: File) => {
         const blob = new Blob([file], { type: file.type });
-
         // Create a new File instance
         const newFile = new File([blob], file.name, {
           type: file.type,
@@ -37,6 +44,8 @@ const ViewMenu = () => {
 
         return newFile;
       });
+      console.log('Dragged in', providedFormattedList);
+      stringifyInputs(providedFormattedList);
       setFiles(providedFormattedList as FileWithPath[]);
     }
   };
@@ -63,18 +72,17 @@ const ViewMenu = () => {
           webkitdirectory={'true'}
           onChange={e => handleFileChange(e)}
         />
-
         <label htmlFor='file-upload'>
-          <Button variant='contained' component='span'>
-            Select File
+          <Button fullWidth variant='contained' component='span'>
+            Select Folder
           </Button>
         </label>
       </div>
-      <div {...getRootProps({ className: 'dropzone' })}>
+
+      <div {...getRootProps({ className: 'dropzone' })} className={style.dropzone}>
         <input {...getInputProps()} />
-        <p>Drag and drop some files here, or click to select files</p>
+        {`Drag and drop files here, or click to select files`}
       </div>
-      <p>{process.env.REACT_APP_CURRENT_DATE || 'wuzzup'}</p>
     </Drawer>
   );
 };

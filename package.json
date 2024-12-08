@@ -35,8 +35,7 @@
     "prepare": "husky install",
     "postinstall": "sh ./scripts/setup.sh",
     "options": "ts-node ./scripts/Menu.mjs",
-    "updateAlias": "npm run postinstall",
-    "WAH": "sh ./scripts/startup.sh"
+    "updateAlias": "npm run postinstall"
   },
   "lint-staged": {
     "*.{js, jsx,ts,tsx}": [
