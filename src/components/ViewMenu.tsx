@@ -1,4 +1,3 @@
-import { stringifyInputs } from '@LocalStorage';
 import DirectoryContext from '@MainContext';
 import { Button, Drawer } from '@mui/material';
 import React, { useContext } from 'react';
@@ -14,9 +13,6 @@ const ViewMenu = () => {
     if (setFiles) {
       const readable = acceptedFiles as FileWithPath[];
       if (readable.length > 0) {
-        console.log('Dragged in', readable);
-
-        stringifyInputs(readable);
         setFiles(readable);
       }
     }
@@ -44,8 +40,6 @@ const ViewMenu = () => {
 
         return newFile;
       });
-      console.log('Dragged in', providedFormattedList);
-      stringifyInputs(providedFormattedList);
       setFiles(providedFormattedList as FileWithPath[]);
     }
   };

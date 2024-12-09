@@ -8,20 +8,11 @@ import { theme } from './Theme/muiTheme';
 import DirectoryContext from '@MainContext';
 import { FileWithPath } from 'react-dropzone';
 import DisplayContent from './components/DisplayContent';
-// import { getStringifiedInputs } from '@LocalStorage';
 
 function App() {
   const [openView, setOpenView] = useState<boolean>(false);
   const [files, setFiles] = useState<FileWithPath[]>([]);
   const [openNav, setOpenNav] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (files.length === 0) {
-      // const files = getStringifiedInputs();
-      // console.log('files', files);
-      // setFiles(files);
-    }
-  }, []);
 
   useEffect(() => {
     if (files.length === 0) {
