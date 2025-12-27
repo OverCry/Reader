@@ -1,7 +1,7 @@
 import { cleanAll, getLastVideoLink, setLastVideoLink } from '@LocalStorage';
 import DirectoryContext from '@MainContext';
-import { Drawer, TextField, Button, Card, CardActions, CardMedia, CardHeader } from '@mui/material';
-import React, { useContext, useState, useEffect } from 'react';
+import { Button, Card, CardActions, CardHeader, CardMedia, Drawer, TextField } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 
 const parseVideoId = (url: string): string => {
   const match = url.match(/v=([^&]+)/);
