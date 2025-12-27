@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'; //needed otherwise eslint complains
-import Settings from './components/Settings';
-import ViewMenu from './components/ViewMenu';
+import Settings from './components/Edits/Settings';
+import ViewMenu from './components/Upload/ViewMenu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { AppBar, Box, IconButton, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import { theme } from './Theme/muiTheme';
 import DirectoryContext from '@MainContext';
 import { FileWithPath } from 'react-dropzone';
-import DisplayContent from './components/DisplayContent';
+import DisplayContent from './components/MainPage/DisplayContent';
 
 function App() {
   const [openView, setOpenView] = useState<boolean>(false);

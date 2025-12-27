@@ -13,6 +13,7 @@ const DEFAULT_EMBED: string = 'UEbd9hm7kLM';
 const Settings = () => {
   const { openNav, setOpenNav } = useContext(DirectoryContext);
   const [videoLink, setVideoLink] = useState<string>(YT_BASE_URL + DEFAULT_EMBED);
+  const [clearCache, setClearCache] = useState<boolean>(false);
 
   const closeDraw = () => {
     if (setOpenNav) {
@@ -24,12 +25,14 @@ const Settings = () => {
     const previousLink: string | null = getLastVideoLink();
     if (previousLink !== null) {
       setVideoLink(YT_BASE_URL + previousLink);
+      setClearCache(true);
     }
   }, []);
 
   const cleanAndReset = () => {
     cleanAll();
     setVideoLink(YT_BASE_URL + DEFAULT_EMBED);
+    setClearCache(false);
   };
 
   const updateVideo = (input: string) => {
@@ -37,6 +40,7 @@ const Settings = () => {
     if (embeded !== '') {
       setLastVideoLink(embeded);
       setVideoLink(YT_BASE_URL + embeded);
+      setClearCache(true);
     }
   };
 
@@ -67,7 +71,7 @@ const Settings = () => {
         </Card>
       </div>
 
-      <Button variant='contained' style={{ margin: '10px' }} onClick={cleanAndReset}>
+      <Button variant='contained' style={{ margin: '10px' }} disabled={!clearCache} onClick={cleanAndReset}>
         Clear Cache
       </Button>
     </Drawer>
