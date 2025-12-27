@@ -82,6 +82,8 @@ npm install gh-pages --save-dev
 "homepage": "https://<username>.github.io/<projectname>
 ```
 
+For this particular case, it becomes `https://overcry.github.io/Reader/`
+
 3. Add <b>predeploy</b> and <b>deploy</b> scripts in `package.json`
 
 ```

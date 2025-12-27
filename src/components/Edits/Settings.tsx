@@ -57,19 +57,19 @@ const Settings = () => {
         onClose: closeDraw,
       }}
     >
-      <div id='youtube' style={{ padding: '10px', borderRadius: '5px' }}>
-        <Card sx={{ minWidth: 275 }}>
-          <CardHeader title='Youtube Player' />
-          <CardActions>
-            <TextField size='small' fullWidth label='Paste Youtube Link' onChange={e => updateVideo(e.target.value)} />
-          </CardActions>
-          <CardMedia>
-            <div style={{ padding: '10px', borderRadius: '5px' }}>
-              <iframe id='iframeVid' src={videoLink} allow='autoplay; encrypted-media' allowFullScreen></iframe>
-            </div>
-          </CardMedia>
-        </Card>
-      </div>
+      {/* <div id='youtube' style={{ padding: '10px', borderRadius: '5px' }}> */}
+      <Card id='youtube' sx={{ minWidth: 275 }}>
+        <CardHeader title='Player' />
+        <CardActions>
+          <TextField size='small' fullWidth label='Paste Link' onChange={e => updateVideo(e.target.value)} />
+        </CardActions>
+        <CardMedia>
+          <div style={{ padding: '10px', borderRadius: '5px' }}>
+            <iframe id='iframeVid' src={videoLink} allow='autoplay; encrypted-media' allowFullScreen></iframe>
+          </div>
+        </CardMedia>
+      </Card>
+      {/* </div> */}
 
       <Button variant='contained' style={{ margin: '10px' }} disabled={!clearCache} onClick={cleanAndReset}>
         Clear Cache

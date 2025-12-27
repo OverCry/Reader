@@ -1,7 +1,6 @@
 import DirectoryContext from '@MainContext';
-import { Button, Drawer } from '@mui/material';
-import React, { useContext } from 'react';
-import { useEffect } from 'react';
+import { Box, Button, Drawer } from '@mui/material';
+import React, { useContext, useEffect } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import style from './ViewMenu.module.css';
 
@@ -41,6 +40,7 @@ const ViewMenu = () => {
         return newFile;
       });
       setFiles(providedFormattedList as FileWithPath[]);
+      closeDraw();
     }
   };
 
@@ -52,30 +52,30 @@ const ViewMenu = () => {
         variant: 'temporary',
         anchor: 'left',
         ModalProps: { keepMounted: true },
-        PaperProps: {},
+        // PaperProps: {},
         open: openView,
         onClose: closeDraw,
       }}
     >
-      <div>
-        <input
-          id='file-upload'
-          key='fileAccepter'
-          type='file'
-          style={{ display: 'none' }} // Hide the default file input
-          webkitdirectory={'true'}
-          onChange={e => handleFileChange(e)}
-        />
-        <label htmlFor='file-upload'>
-          <Button fullWidth variant='contained' component='span'>
+      <input
+        id='file-upload'
+        key='fileAccepter'
+        type='file'
+        style={{ display: 'none' }} // Hide the default file input
+        webkitdirectory={'true'}
+        onChange={e => handleFileChange(e)}
+      />
+      <label htmlFor='file-upload'>
+        <Box m={1}>
+          <Button className={style.button} fullWidth variant='contained' component='span'>
             Select Folder
           </Button>
-        </label>
-      </div>
+        </Box>
+      </label>
 
       <div {...getRootProps({ className: 'dropzone' })} className={style.dropzone}>
         <input {...getInputProps()} />
-        {`Drag and drop files here, or click to select files`}
+        Drag and drop, or click to select files
       </div>
     </Drawer>
   );
