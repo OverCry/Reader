@@ -1,10 +1,4 @@
 import { Typography } from '@mui/material';
-import React from 'react';
-
-export interface KeyValue {
-  key: string[];
-  value: number[];
-}
 
 type HeadingParams = {
   children: string;

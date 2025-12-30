@@ -72,7 +72,7 @@ const Settings = () => {
       {/* </div> */}
 
       <Button variant='contained' style={{ margin: '10px' }} disabled={!clearCache} onClick={cleanAndReset}>
-        Clear Cache
+        Clear Video Cache
       </Button>
     </Drawer>
   );

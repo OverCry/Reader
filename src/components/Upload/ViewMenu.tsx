@@ -13,6 +13,7 @@ const ViewMenu = () => {
       const readable = acceptedFiles as FileWithPath[];
       if (readable.length > 0) {
         setFiles(readable);
+        closeDraw();
       }
     }
   }, [acceptedFiles, setFiles]);
@@ -39,9 +40,14 @@ const ViewMenu = () => {
 
         return newFile;
       });
+      console.log('WAHA providedFormattedList', providedFormattedList);
       setFiles(providedFormattedList as FileWithPath[]);
       closeDraw();
     }
+  };
+
+  const resetImages = () => {
+    if (setFiles !== undefined) setFiles([]);
   };
 
   return (
@@ -77,6 +83,11 @@ const ViewMenu = () => {
         <input {...getInputProps()} />
         Drag and drop, or click to select files
       </div>
+      <Box m={1}>
+        <Button className={style.button} fullWidth variant='contained' component='span' onClick={resetImages}>
+          Clear Cache
+        </Button>
+      </Box>
     </Drawer>
   );
 };
