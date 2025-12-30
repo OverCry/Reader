@@ -51,6 +51,7 @@ export const main = async () => {
       return;
     }
     console.log(`Command Result: ${stdout}`);
+    main();
   });
 };
 
