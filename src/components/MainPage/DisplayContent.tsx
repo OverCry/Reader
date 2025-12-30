@@ -73,7 +73,6 @@ const separateFilesByDirectory = (
     }
     return each;
   });
-  console.log('WAH secondSplit', secondSplit);
 
   return secondSplit;
 };

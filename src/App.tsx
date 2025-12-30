@@ -62,7 +62,7 @@ function App() {
               </IconButton>
             </Toolbar>
           </AppBar>
-          <Box component='main' sx={{ pt: 8 }}>
+          <Box component='main' sx={{ pt: 8 }} style={{ backgroundColor: 'gray' }}>
             <DisplayContent />
           </Box>
           <ViewMenu />

@@ -40,7 +40,6 @@ const ViewMenu = () => {
 
         return newFile;
       });
-      console.log('WAHA providedFormattedList', providedFormattedList);
       setFiles(providedFormattedList as FileWithPath[]);
       closeDraw();
     }
@@ -81,7 +80,7 @@ const ViewMenu = () => {
 
       <div {...getRootProps({ className: 'dropzone' })} className={style.dropzone}>
         <input {...getInputProps()} />
-        Drag and drop, or click to select files
+        <Box m={2}>Drag and drop, or click to select files</Box>
       </div>
       <Box m={1}>
         <Button className={style.button} fullWidth variant='contained' component='span' onClick={resetImages}>

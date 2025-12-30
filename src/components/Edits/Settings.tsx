@@ -57,7 +57,6 @@ const Settings = () => {
         onClose: closeDraw,
       }}
     >
-      {/* <div id='youtube' style={{ padding: '10px', borderRadius: '5px' }}> */}
       <Card id='youtube' sx={{ minWidth: 275 }}>
         <CardHeader title='Player' />
         <CardActions>
