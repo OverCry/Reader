@@ -146,8 +146,7 @@ export const sortByKey = <T>(list: T[], key: keyof T): T[] => {
  * @param list2 second list
  * @param sortValue property of list to check equality by
  * */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const operation = (list1: any[], list2: any[], sortValue: string, isUnion: boolean = false) => {
+const operation = <T, K extends keyof T>(list1: T[], list2: T[], sortValue: K, isUnion: boolean = false) => {
   return list1.filter(
     (
       set => a =>
@@ -156,13 +155,11 @@ const operation = (list1: any[], list2: any[], sortValue: string, isUnion: boole
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const inBoth = (list1: any[], list2: any[], sortValue: string) => {
+export const inBoth = <T, K extends keyof T>(list1: T[], list2: T[], sortValue: K) => {
   return operation(list1, list2, sortValue, true);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const inFirstOnly = (list1: any[], list2: any[], sortValue: string) => {
+export const inFirstOnly = <T, K extends keyof T>(list1: T[], list2: T[], sortValue: K) => {
   return operation(list1, list2, sortValue);
 };
 

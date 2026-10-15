@@ -1,6 +1,7 @@
 import DirectoryContext from '@MainContext';
-import { Drawer } from '@mui/material';
+import { Drawer, Stack } from '@mui/material';
 import { useContext } from 'react';
+import WidthController from './WidthController';
 import YoutubeComponent from './YoutubeComponent';
 
 const Settings = () => {
@@ -25,19 +26,17 @@ const Settings = () => {
         onClose: closeDraw,
       }}
     >
-      <YoutubeComponent />
-      {/* <Card id='youtube' sx={{ minWidth: 275 }}>
-        <CardHeader title='Player' />
-        <CardActions>
-          <TextField size='small' fullWidth label='Paste Link' onChange={e => updateVideo(e.target.value)} />
-        </CardActions>
-        <CardMedia>
-          <div style={{ padding: '10px', borderRadius: '5px' }}>
-            <iframe id='iframeVid' src={videoLink} allow='autoplay; encrypted-media' allowFullScreen></iframe>
-          </div>
-        </CardMedia>
-      </Card> */}
-      {/* </div> */}
+      <Stack
+        direction='column'
+        spacing={2}
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <WidthController />
+        <YoutubeComponent />
+      </Stack>
     </Drawer>
   );
 };

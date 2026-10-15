@@ -43,8 +43,6 @@ function App() {
           }}
         >
           <AppBar position='fixed' color='primary' sx={{ bottom: 'auto', top: 0 }}>
-            {/* <AppBar position='fixed' color='primary' sx={{ top: 'auto', bottom: 0 }}> */}
-
             <Toolbar>
               <IconButton
                 size='large'

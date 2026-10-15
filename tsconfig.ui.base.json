@@ -6,9 +6,10 @@
     "paths": {
       "@MainContext": ["./AppContext/Provider/DirectoryContext"],
       "@LocalStorage": ["./AppContext/LocalStorage/localStorage"],
+      "@Constants": ["./AppContext/Constants/constants"],
       "@Colours": ["./Theme/colours"],
-      "@GenericFunctions": ["./components/Support/genericFunctions"],
-      "@Headers": ["./components/Support/headers"]
+      "@GenericFunctions": ["./Support/genericFunctions"],
+      "@Headers": ["./Support/headers"]
     }
   }
 }

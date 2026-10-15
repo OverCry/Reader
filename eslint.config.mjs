@@ -17,7 +17,6 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // React flat config
   {
     ...pluginReact.configs.flat.recommended,
     settings: {
@@ -27,7 +26,17 @@ export default [
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+    },
+  },
+
+  {
+    files: ['**/*.{ts,tsx}'],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
 ];

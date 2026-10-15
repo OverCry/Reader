@@ -1,8 +1,10 @@
+import { getImageWidth } from '@LocalStorage';
 import DirectoryContext from '@MainContext';
-import { FormControlLabel, Slide, Switch } from '@mui/material';
+import { FormControlLabel, Switch } from '@mui/material';
 import { Stack } from '@mui/system';
 import { Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { FileWithPath } from 'react-dropzone/.';
+import { phoneWidth } from '@GenericFunctions';
 import { FileWithDeconstruction } from '../../Support/typing';
 import style from './DisplayContent.module.css';
 
@@ -84,6 +86,8 @@ const DisplayContent = () => {
   const [viewAll, setViewAll] = useState<boolean>(true);
   const [baseIndex, setBaseIndex] = useState<number>(0);
 
+  const width = phoneWidth ? 100 : getImageWidth();
+
   const sortedFiles = useMemo(() => {
     if (files !== undefined && files.length > 0) {
       return separateFilesByDirectory(files, setBaseIndex);
@@ -146,8 +150,7 @@ const DisplayContent = () => {
         alignItems: 'center',
       }}
     >
-      {/* {options.viewAllOption} */}
-      <div className={style.content}>
+      <div className={style.content} style={{ width: `${width}%` }}>
         {visibleFiles?.map((fileFormat, i) => {
           const content = fileFormat.file;
           return <img className={style.content} alt={content.name} key={i} src={URL.createObjectURL(content)} />;

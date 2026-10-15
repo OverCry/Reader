@@ -35,7 +35,7 @@ To start:
 
 # Summary
 
-A web page intended to display images in natural order. This was originally made in mine to read long strip,
+A web page intended to display images in natural order. This was originally made in mind to read long strip,
 webtoon-like content which do not display well when they are not joined together.
 
 ## Goals
